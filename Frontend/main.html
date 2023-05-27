@@ -1,30 +1,74 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Chatbot</title>
+</head>
 <body>
-    <div id="chatbox">
-        <!-- Chat messages will be added here -->
+    <div class="container">
+        <h1 class="my-4 text-center">Chat with GPT-4</h1>
+
+        <div id="chatbox" class="border rounded p-3 mb-4" style="height: 500px; overflow: auto;">
+            <!-- Chat messages will be added here -->
+        </div>
+
+        <div class="btn-group mb-3" role="group" aria-label="Button group">
+            <button type="button" class="btn btn-secondary" onclick="buttonClick('Kleine Anfrage')">Kleine Anfrage</button>
+            <button type="button" class="btn btn-secondary" onclick="buttonClick('Antrag')">Antrag</button>
+            <button type="button" class="btn btn-secondary" onclick="buttonClick('Rede')">Rede</button>
+
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Stil
+                </button>
+                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                    <a class="dropdown-item" href="#" onclick="dropdownClick('Gedeckt')">Gedeckt</a>
+                    <a class="dropdown-item" href="#" onclick="dropdownClick('Polemisch')">Polemisch</a>
+                    <a class="dropdown-item" href="#" onclick="dropdownClick('Intelligent')">Intelligent</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-group mb-3">
+            <input id="chatinput" type="text" class="form-control" placeholder="Enter your message here...">
+            <div class="input-group-append">
+                <button class="btn btn-primary" onclick="submitChat()">Send</button>
+            </div>
+        </div>
     </div>
 
-    <input id="chatinput" type="text">
-    <button onclick="submitChat()">Submit</button>
-
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script>
-    async function submitChat() {
-        const chatInput = document.getElementById('chatinput');
-        const response = await fetch('/getChatResponse', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                prompt: chatInput.value
-            })
-        });
+        function buttonClick(value) {
+            document.getElementById('chatinput').value = value;
+        }
 
-        const chatbox = document.getElementById('chatbox');
-        chatbox.innerHTML += 'User: ' + chatInput.value + '<br>';
-        chatbox.innerHTML += 'Bot: ' + await response.text() + '<br>';
-        chatInput.value = '';
-    }
+        function dropdownClick(value) {
+            document.getElementById('chatinput').value = value;
+        }
+
+        async function submitChat() {
+            const chatInput = document.getElementById('chatinput');
+            const response = await fetch('/getChatResponse', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    prompt: chatInput.value
+                })
+            });
+
+            const chatbox = document.getElementById('chatbox');
+            chatbox.innerHTML += '<div class="p-2 mt-2 bg-light border rounded"><strong>User:</strong> ' + chatInput.value + '</div>';
+            chatbox.innerHTML += '<div class="p-2 mt-2 bg-primary text-white border rounded"><strong>Bot:</strong> ' + await response.text() + '</div>';
+            chatInput.value = '';
+            chatbox.scrollTop = chatbox.scrollHeight;
+        }
     </script>
 </body>
 </html>
