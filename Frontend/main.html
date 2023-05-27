@@ -8,25 +8,26 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="my-4 text-center">Chat with GPT-4</h1>
+        <h1 class="my-4 text-center">Referanta Bot</h1>
 
         <div id="chatbox" class="border rounded p-3 mb-4" style="height: 500px; overflow: auto;">
             <!-- Chat messages will be added here -->
         </div>
 
         <div class="btn-group mb-3" role="group" aria-label="Button group">
-            <button type="button" class="btn btn-secondary" onclick="buttonClick('Kleine Anfrage')">Kleine Anfrage</button>
-            <button type="button" class="btn btn-secondary" onclick="buttonClick('Antrag')">Antrag</button>
-            <button type="button" class="btn btn-secondary" onclick="buttonClick('Rede')">Rede</button>
+            <button type="button" class="btn btn-outline-info mr-2" onclick="buttonClick('Kleine Anfrage')">Kleine Anfrage</button>
+            <button type="button" class="btn btn-outline-info mr-2" onclick="buttonClick('Antrag')">Antrag</button>
+            <button type="button" class="btn btn-outline-info mr-2" onclick="buttonClick('Rede')">Rede</button>
 
             <div class="btn-group" role="group">
-                <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <button id="btnGroupDrop1" type="button" class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Stil
                 </button>
                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                     <a class="dropdown-item" href="#" onclick="dropdownClick('Gedeckt')">Gedeckt</a>
                     <a class="dropdown-item" href="#" onclick="dropdownClick('Polemisch')">Polemisch</a>
                     <a class="dropdown-item" href="#" onclick="dropdownClick('Intelligent')">Intelligent</a>
+                    <a class="dropdown-item" href="#" onclick="dropdownClick('Niggermode')">Niggermode</a>
                 </div>
             </div>
         </div>
