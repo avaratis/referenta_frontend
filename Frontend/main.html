@@ -1,0 +1,30 @@
+<html>
+<body>
+    <div id="chatbox">
+        <!-- Chat messages will be added here -->
+    </div>
+
+    <input id="chatinput" type="text">
+    <button onclick="submitChat()">Submit</button>
+
+    <script>
+    async function submitChat() {
+        const chatInput = document.getElementById('chatinput');
+        const response = await fetch('/getChatResponse', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                prompt: chatInput.value
+            })
+        });
+
+        const chatbox = document.getElementById('chatbox');
+        chatbox.innerHTML += 'User: ' + chatInput.value + '<br>';
+        chatbox.innerHTML += 'Bot: ' + await response.text() + '<br>';
+        chatInput.value = '';
+    }
+    </script>
+</body>
+</html>
