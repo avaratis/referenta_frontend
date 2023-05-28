@@ -1,46 +1,43 @@
+require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
-const fetch = require('node-fetch');
-
 const cors = require('cors');
+const { Configuration, OpenAIApi } = require("openai");
+
 const app = express();
 app.use(cors());
-
-// OpenAI API key
-const OPENAI_API_KEY = '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';
-
 app.use(bodyParser.json());
+
+const configuration = new Configuration({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+const openai = new OpenAIApi(configuration);
 
 app.post('/getChatResponse', async (req, res) => {
   const prompt = req.body.prompt;
 
   try {
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`
-      },
-      body: JSON.stringify({
-        prompt: prompt,
-        max_tokens: 60
-      })
+    const response = await openai.createChatCompletion({
+      model: 'gpt-3.5-turbo',
+      messages: [
+        {
+          role: 'user',
+          content: prompt,
+        }
+      ],
     });
 
-    if (!response.ok) { // if HTTP-status is 200-299
-      // get the error message from the body or default to response status
-      const message = `An error has occured: ${response.status} ${await response.text()}`;
-      throw new Error(message);
+    if (response.data && response.data.choices && response.data.choices.length > 0) {
+      const botReply = response.data.choices[0].message.content.trim();
+      res.send(botReply);
+    } else {
+      throw new Error('Invalid response received from OpenAI API');
     }
-    
-    const data = await response.json();
-    res.send(data.choices[0].text.trim());
   } catch (error) {
-    console.error("Error in /getChatResponse:", error.message);
-    res.status(500).json({ error: "Error processing request" });
-}
+    console.error("Error in /getChatResponse:", error.message, error);
+    res.status(500).json({ error: error.message });
+  }
 });
-
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
