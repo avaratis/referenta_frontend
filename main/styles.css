@@ -1,0 +1,127 @@
+/* styles.css */
+
+/* Set the background color to dark green */
+body {
+    background-color: #ffffff;
+  }
+  
+  /* Set the text color to white */
+  body, h1, h2, h3, p, input, select, option, label {
+    color: #045034;
+  }
+  
+  .logo {
+    width: 100px; /* Adjust the width as per your logo size */
+    height: 100px; /* Adjust the height as per your logo size */
+    margin-right: 10px; /* Adjust the margin as per your desired spacing */
+  }
+
+  /* Set the font family to Roboto */
+  body {
+    font-family: "Roboto", sans-serif;
+  }
+
+  .header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #045034;
+    color: #ffffff !important;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .header-bar h1 {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    color: #ffffff !important;
+    text-align: center;
+  }
+  .header-bar img {
+  margin-right: 10px;
+}
+
+.form-check-label {
+    margin-left: 10px;
+}
+
+.selection-title {
+    font-weight: bold;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.purpose-checkbox {
+    display: inline-block;
+}
+
+.custom-button {
+    background-color: #045034;
+    border-color: #045034;
+  }
+
+.checkbox-container {
+    background-color: #f8f9fa;
+    border: 1px solid #045034;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+.checkbox-container label {
+    color: black;
+  }
+
+#chatbox {
+    display: none;
+}
+
+.dropzone {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height:50px;
+background-color: #f8f9fa;
+border: 2px solid #045034;
+border-radius: 8px;
+font-size: 24px;
+color: #343a40;
+cursor: pointer;
+}
+
+.dropzone i {
+font-size: 48px;
+margin-bottom: 16px;
+}
+
+
+/* CSS for the range slider */
+input[type="range"] {
+-webkit-appearance: none;
+width: 100%;
+height: 5px;
+background-color: #045034;
+outline: none;
+opacity: 0.7;
+-webkit-transition: opacity 0.2s;
+transition: opacity 0.2s;
+}
+
+/* CSS for the slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+-webkit-appearance: none;
+appearance: none;
+width: 15px;
+height: 15px;
+background-color: #045034;
+cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+width: 15px;
+height: 15px;
+background-color: #045034;
+cursor: pointer;
+}
+

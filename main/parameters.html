@@ -6,59 +6,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <title>Parameter Input</title>
-    <style>
-        .header-bar {
-            background-color: green;
-            color: white;
-            padding: 10px;
-            text-align: center;
-        }
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
 
-        .header-bar h1 {
-            margin: 0;
-        }
-
-        .form-check-label {
-            margin-left: 10px;
-        }
-
-        .purpose-title {
-            font-weight: bold;
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-        .purpose-checkbox {
-            display: inline-block;
-        }
-
-        .checkbox-container {
-            background-color: #f8f9fa;
-            border: 1px solid #343a40;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 
 <body>
     <div class="container">
         <div class="header-bar">
+            <img src="images/logo.png" alt="Logo" class="logo">
             <h1>Referenta</h1>
         </div>
 
         <div class="container">
-            <h1 class="my-4 text-center">Referanta Bot</h1>
-    
+
+
             <div id="chatbox" class="border rounded p-3 mb-4" style="height: 500px; overflow: auto;">
                 <!-- Chat messages will be added here -->
             </div>
 
-        <h2 class="my-4 text-center">Parameter Input</h2>
+        <h2 class="my-4 text-center">Parameter Eingabe</h2>
 
         <div class="form-group">
             <div class="checkbox-container">
-                <label for="purposeField" class="purpose-title">Zweck</label>
+                <label for="purposeField" class="selection-title">Zweck</label>
                 <div class="purpose-checkbox">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" value="" id="parliamentaryCheckbox" onclick="toggleCheckbox('parliamentaryCheckbox', 'otherCheckbox')">
@@ -78,7 +49,7 @@
 
         <div class="form-group">
             <div class="checkbox-container">
-                <label for="purposeField" class="purpose-title">Votum:</label>
+                <label for="purposeField" class="selection-title">Votum:</label>
                 <div class="purpose-checkbox">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="checkbox" value="" id="dafürCheckbox" onclick="toggleCheckbox('dafürCheckbox', 'dagegenCheckbox')">
@@ -103,15 +74,14 @@
         </div>
 
         <div class="form-group">
-            <label for="lengthSlider">Länge</label>
-            <input type="range" class="form-control-range" id="lengthSlider" min="1" max="30" step="1">
-            <output id="lengthOutput">1</output>
+            <label for="lengthSlider" class="selection-title">Länge</label>
+            <input type="range" class="form-control-range" id="lengthSlider" min="1" max="30" step="1" value="10">
+            <output id="lengthOutput">10 minuten</output>
         </div>
 
 
-
         <div class="form-group">
-            <label for="rednerSelect">Redner:</label>
+            <label for="rednerSelect" class="selection-title">Redner:</label>
             <select class="custom-select" id="rednerSelect" onchange="displaySelectedValue(this)">
                 <option selected disabled>Select a Redner</option>
                 <option value="Helmut Kohl">Helmut Kohl</option>
@@ -122,16 +92,32 @@
 
 
         <div class="form-group">
-            <label for="oToneInput">O-Töne:</label>
+            <label for="oToneInput" class="selection-title"> O-Töne:</label>
             <input type="text" class="form-control" id="oToneInput" maxlength="500" oninput="updateCharacterCount(this)">
             <div class="character-counter">
                 <span id="characterCount">0</span> / 500 characters
             </div>
         </div>
 
-        <div class="d-flex justify-content-end">
-            <button class="btn btn-success" onclick="submitChat()">Submit</button>
+        <div class="form-group">
+            <label for="hinweiseInput" class="selection-title"> Zusätzliche Hinweise:</label>
+            <input type="text" class="form-control" id="oToneInput" maxlength="500" oninput="updateCharacterCount(this)">
+            <div class="character-counter">
+                <span id="characterCount">0</span> / 500 characters
+            </div>
+        </div>
+
+
+        <div id="dropzone" class="dropzone">
+            <i class="far fa-file-pdf"></i>
+            <p>Drag and drop a PDF file here to upload</p>
           </div>
+
+          <div class="d-flex justify-content-end mt-3">
+            <button class="btn btn-success custom-button" onclick="submitChat()">Rede erstellen</button>
+          </div>
+          
+          
 
 
     </div>
@@ -140,109 +126,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <script>
-        function buttonClick(value) {
-            document.getElementById('chatinput').value = value;
-        }
+    <script src="scripts.js"></script>
 
-        function dropdownClick(value) {
-            document.getElementById('chatinput').value = value;
-        }
-
-        const lengthSlider = document.getElementById('lengthSlider');
-        const lengthOutput = document.getElementById('lengthOutput');
-
-        lengthSlider.addEventListener('input', function () {
-            lengthOutput.innerText = this.value;
-            if (this.value > 1) {
-                lengthOutput.innerHTML += ' minutes';
-            } else {
-                lengthOutput.innerHTML += ' minute';
-            }
-        });
-
-        function toggleCheckbox(selectedCheckboxId, otherCheckboxId) {
-                const selectedCheckbox = document.getElementById(selectedCheckboxId);
-                const otherCheckbox = document.getElementById(otherCheckboxId);
-
-                if (selectedCheckbox.checked) {
-                    otherCheckbox.checked = false;
-                }
-            }
-
-        function displaySelectedValue(selectElement) {
-                const selectedValue = selectElement.value;
-                document.getElementById('selectedValueDisplay').textContent = `Selected Redner: ${selectedValue}`;
-            }
-
-            function updateCharacterCount(inputElement) {
-                const characterCountElement = document.getElementById('characterCount');
-                const characterCount = inputElement.value.length;
-                characterCountElement.textContent = characterCount;
-            }
-
-        function displaySelectedValue(selectElement) {
-        const selectedValue = selectElement.value;
-        document.getElementById('selectedValueDisplay').textContent = `Selected Redner: ${selectedValue}`;
-    }    
-
-    function compileInputData() {
-        const parliamentaryCheckbox = document.getElementById('parliamentaryCheckbox');
-        const otherCheckbox = document.getElementById('otherCheckbox');
-        const dafürCheckbox = document.getElementById('dafürCheckbox');
-        const dagegenCheckbox = document.getElementById('dagegenCheckboxCheckbox');
-        const enthaltungsCheckbox = document.getElementById('enthaltungsCheckbox');
-        const lengthSlider = document.getElementById('lengthSlider');
-        const rednerSelect = document.getElementById('rednerSelect');
-        const oToneInput = document.getElementById('oToneInput');
-
-        const inputData = {
-            parliamentary: parliamentaryCheckbox.checked,
-            other: otherCheckbox.checked,
-            dafür: dafürCheckbox.checked,
-            dagegen: dagegenCheckbox.checked,
-            length: parseInt(lengthSlider.value),
-            redner: rednerSelect.value,
-            oTone: oToneInput.value
-    };
-
-  return inputData;
-}
-
-    async function submitChat() {
-        const inputData = compileInputData();
-            const chatbox = document.getElementById('chatbox');
-
-
-                chatbox.innerHTML += '<div class="p-2 mt-2 bg-light border rounded"><strong>Anfrage erhalten:</strong> ' + 'Bitte warten' + '</div>';
-                console.log(inputData.oTone)
-                try {
-                    const response = await fetch('http://localhost:3000/getChatResponse', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            prompt: "Task Speech: " + "Speaker: " + inputData.redner + "Topic" + inputData.oTone + "Language German" + "Speech length:  " +  inputData.length + "Position: " + (inputData.dafür == true ? "for that position" : "against that position")
-                        })
-                    });
-
-                    if (response.ok) {
-                        const botReply = await response.text();
-                        chatbox.innerHTML += '<div class="p-2 mt-2 bg-primary text-white border rounded"><strong>Bot:</strong> ' + botReply + '</div>';
-                        inputData.value = '';
-                        chatbox.scrollTop = chatbox.scrollHeight;
-                    } else {
-                        console.error('Error:', response.statusText);
-                    }
-                } catch (error) {
-                    console.error('Error:', error);
-                }
-            
-        }
-
-
-    </script>
 
 </body>
 
