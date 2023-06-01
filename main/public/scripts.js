@@ -76,7 +76,7 @@ const inputData = compileInputData();
         chatbox.innerHTML += '<div class="p-2 mt-2 bg-light border rounded"><strong>Anfrage erhalten:</strong> ' + 'Bitte warten' + '</div>';
         console.log(inputData.oTone)
         try {
-            const response = await fetch('/getChatResponse', { // Update the URL to your deployed server 
+            const response = await fetch('https://us-central1-referenta-30a27.cloudfunctions.net/api', { // Update the URL to your deployed server 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
