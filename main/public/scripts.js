@@ -33,8 +33,14 @@ function displaySelectedValue(selectElement) {
         document.getElementById('selectedValueDisplay').textContent = `Selected Redner: ${selectedValue}`;
     }
 
-    function updateCharacterCount(inputElement) {
-        const characterCountElement = document.getElementById('characterCount');
+    function updateCharacterCountoTone(inputElement) {
+        const characterCountElement = document.getElementById('characterCountoTone');
+        const characterCount = inputElement.value.length;
+        characterCountElement.textContent = characterCount;
+    }
+
+    function updateCharacterCountHinweise(inputElement) {
+        const characterCountElement = document.getElementById('characterCountHinweise');
         const characterCount = inputElement.value.length;
         characterCountElement.textContent = characterCount;
     }
