@@ -81,7 +81,7 @@
                 chatbox.innerHTML += '<div class="p-2 mt-2 bg-light border rounded"><strong>You:</strong> ' + chatInput.value + '</div>';
 
                 try {
-                    const response = await fetch('http://localhost:3000/getChatResponse', {
+                    const response = await fetch('http://127.0.0.1:4000/functions', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
