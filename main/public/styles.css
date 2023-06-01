@@ -16,9 +16,9 @@ body {
     margin-right: 10px; /* Adjust the margin as per your desired spacing */
   }
 
-  /* Set the font family to Roboto */
+  /* Set the font family to Montserrat */
   body {
-    font-family: "Roboto", sans-serif;
+    font-family: "Montserrat" sans-serif;
   }
 
   .header-bar {
@@ -33,7 +33,7 @@ body {
   
   .header-bar h1 {
     margin: 0;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     color: #ffffff !important;
     text-align: center;
