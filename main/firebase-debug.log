@@ -1,0 +1,67 @@
+[debug] [2023-06-01T16:56:23.296Z] ----------------------------------------------------------------------
+[debug] [2023-06-01T16:56:23.298Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Avaratis\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init functions
+[debug] [2023-06-01T16:56:23.298Z] CLI Version:   12.2.1
+[debug] [2023-06-01T16:56:23.298Z] Platform:      win32
+[debug] [2023-06-01T16:56:23.299Z] Node Version:  v18.16.0
+[debug] [2023-06-01T16:56:23.299Z] Time:          Thu Jun 01 2023 18:56:23 GMT+0200 (Mitteleuropäische Sommerzeit)
+[debug] [2023-06-01T16:56:23.299Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-06-01T16:56:23.357Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-06-01T16:56:23.357Z] > authorizing via signed-in user (m.schwarzappel@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\Avaratis\Documents\referenta_frontend\main
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-06-01T16:56:32.533Z] Using project from CLI flag: referenta-30a27
+[debug] [2023-06-01T16:56:32.535Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/referenta-30a27 [none]
+[debug] [2023-06-01T16:56:33.289Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/referenta-30a27 200
+[debug] [2023-06-01T16:56:33.289Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/referenta-30a27 {"projectId":"referenta-30a27","projectNumber":"966336759557","displayName":"referenta","name":"projects/referenta-30a27","resources":{"hostingSite":"referenta-30a27"},"state":"ACTIVE","etag":"1_f3e088c9-23a5-48bd-b491-cf4cb76788cb"}
+[info] i  Using project referenta-30a27 (referenta) 
+[info] 
+=== Functions Setup
+[debug] [2023-06-01T16:56:33.294Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-06-01T16:56:33.294Z] > authorizing via signed-in user (m.schwarzappel@gmail.com)
+[debug] [2023-06-01T16:56:33.294Z] [iam] checking project referenta-30a27 for permissions ["firebase.projects.get"]
+[debug] [2023-06-01T16:56:33.294Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/referenta-30a27:testIamPermissions [none]
+[debug] [2023-06-01T16:56:33.294Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/referenta-30a27:testIamPermissions x-goog-quota-user=projects/referenta-30a27
+[debug] [2023-06-01T16:56:33.295Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/referenta-30a27:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-06-01T16:56:40.466Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/referenta-30a27:testIamPermissions 200
+[debug] [2023-06-01T16:56:40.466Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/referenta-30a27:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2023-06-01T16:56:40.467Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/referenta-30a27/services/cloudfunctions.googleapis.com [none]
+[debug] [2023-06-01T16:56:40.467Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/referenta-30a27/services/cloudfunctions.googleapis.com x-goog-quota-user=projects/referenta-30a27
+[debug] [2023-06-01T16:56:40.467Z] >>> [apiv2][query] GET https://serviceusage.googleapis.com/v1/projects/referenta-30a27/services/runtimeconfig.googleapis.com [none]
+[debug] [2023-06-01T16:56:40.467Z] >>> [apiv2][(partial)header] GET https://serviceusage.googleapis.com/v1/projects/referenta-30a27/services/runtimeconfig.googleapis.com x-goog-quota-user=projects/referenta-30a27
+[debug] [2023-06-01T16:56:41.430Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/referenta-30a27/services/runtimeconfig.googleapis.com 200
+[debug] [2023-06-01T16:56:41.430Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/referenta-30a27/services/runtimeconfig.googleapis.com [omitted]
+[debug] [2023-06-01T16:56:41.435Z] <<< [apiv2][status] GET https://serviceusage.googleapis.com/v1/projects/referenta-30a27/services/cloudfunctions.googleapis.com 200
+[debug] [2023-06-01T16:56:41.435Z] <<< [apiv2][body] GET https://serviceusage.googleapis.com/v1/projects/referenta-30a27/services/cloudfunctions.googleapis.com [omitted]
+[info] 
+Detected existing codebase(s): default
+
+[info] Let's create a new codebase for your functions.
+[info] A directory corresponding to the codebase will be created in your project
+[info] with sample code pre-configured.
+
+[info] See https://firebase.google.com/docs/functions/organize-functions for
+[info] more information on organizing your functions using codebases.
+
+[info] Functions can be deployed with firebase deploy.
+
