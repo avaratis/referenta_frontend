@@ -35,8 +35,13 @@ app.post('/getChatResponse', async (req, res) => {
   try {
     const response = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
-      content: prompt,
       max_tokens: maxTokens,
+      messages: [
+        {
+          role: 'user',
+          content: prompt,
+        }
+      ],
     });
 
     if (response.data && response.data.choices && response.data.choices.length > 0) {
