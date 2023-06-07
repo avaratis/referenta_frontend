@@ -88,7 +88,7 @@ const inputData = compileInputData();
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    prompt: "Task Speech: " + "Speaker: " + inputData.redner + " Topic " + inputData.oTone + "Language German " + "Speech length when spoken:  " +  inputData.length + " minutes " + " Position: " + (inputData.dafür == true ? " for that position " : " against that position ")
+                    prompt: "Task Speech: " + "Speaker: " + inputData.redner + " Topic " + inputData.oTone + " Language German " + "Maximum amount of words: " +  calculateWordsSpoken(inputData.length, wordsPerMinute) + " Position: " + (inputData.dafür == true ? " for that position " : " against that position ")
                 })
             });
 
@@ -104,6 +104,12 @@ const inputData = compileInputData();
             console.error('Error:', error);
         }
     
+}
+
+let wordsPerMinute = 130; // Average speech rate
+
+function calculateWordsSpoken(minutes, wordsPerMinute) {
+    return minutes * wordsPerMinute;
 }
 
 
