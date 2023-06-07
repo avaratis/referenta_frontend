@@ -34,10 +34,10 @@ app.post('/getChatResponse', async (req, res) => {
 
   try {
     const response = await openai.createCompletion({
-      model: 'text-davinci-003',
-      promt: prompt,
-      max_tokens: maxTokens,
-      temperature: 1,
+      model: "text-davinci-003",
+      prompt: "Say this is a test",
+      max_tokens: 7,
+      temperature: 0,
     });
 
     if (response.data && response.data.choices && response.data.choices.length > 0) {
