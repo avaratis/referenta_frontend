@@ -30,6 +30,7 @@ const openai = new OpenAIApi(configuration);
 
 app.post('/getChatResponse', async (req, res) => {
   const prompt = req.body.prompt;
+  const maxTokens = req.body.maxTokens;
 
   try {
     const response = await openai.createChatCompletion({
@@ -38,6 +39,7 @@ app.post('/getChatResponse', async (req, res) => {
         {
           role: 'user',
           content: prompt,
+          max_tokens: maxTokens,
         }
       ],
     });

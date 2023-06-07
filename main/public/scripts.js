@@ -88,7 +88,8 @@ const inputData = compileInputData();
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    prompt: "Task Speech: " + "Speaker: " + inputData.redner + " Topic " + inputData.oTone + " Language German " + "Maximum amount of words: " +  calculateWordsSpoken(inputData.length, wordsPerMinute) + " Position: " + (inputData.dafür == true ? " for that position " : " against that position ")
+                    prompt: "Task Speech: " + "Speaker: " + inputData.redner + " Topic " + inputData.oTone + " Language German " + "Maximum amount of words: " +  calculateWordsSpoken(inputData.length, wordsPerMinute) + " Position: " + (inputData.dafür == true ? " for that position " : " against that position "),
+                    maxTokens: calculateWordsSpoken(inputData.length, wordsPerMinute)
                 })
             });
 
