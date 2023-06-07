@@ -35,7 +35,6 @@ app.post('/getChatResponse', async (req, res) => {
   try {
     const response = await openai.createChatCompletion({
       model: 'gpt-3.5-turbo',
-      max_tokens: maxTokens,
       messages: [
         {
           role: 'user',
