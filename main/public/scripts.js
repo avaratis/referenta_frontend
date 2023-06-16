@@ -101,11 +101,11 @@ const inputData = compileInputData();
                     const botReply = await response.text();
               
                     // Create a new tab for the chat reply
-                    const chatTabs = document.getElementById('chatTabs');
+                    const chatTabs = document.getElementById('nav-item');
                     const tabId = `tab-${Date.now()}`;
                     const tabButton = document.createElement('button');
                     tabButton.className = 'btn btn-light';
-                    tabButton.innerText = `Anfrage #${chatTabs.children.length + 1}`;
+                    tabButton.innerText = `<strong>Anfrage #${chatTabs.children.length + 1}</strong>`;
                     tabButton.addEventListener('click', () => showChatReply(tabId));
                     chatTabs.appendChild(tabButton);
               
@@ -114,7 +114,7 @@ const inputData = compileInputData();
                     chatReply.className = 'p-2 mt-2';
                     chatReply.id = tabId;
                     chatReply.style.display = 'none';
-                    chatReply.innerHTML = `<strong>Anfrage:</strong> ${botReply}`;
+                    chatReply.innerHTML = `${botReply}`;
                     chatTabs.insertBefore(chatReply, tabButton.nextSibling);
               
                     // Show the newly created chat reply by default
