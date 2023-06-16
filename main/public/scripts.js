@@ -98,29 +98,27 @@ const inputData = compileInputData();
 
             if (response.ok) {
 
-
-                const botReply = await response.text();
-                chatbox.innerHTML += `<div class="p-2 mt-2 bg-primary text-white border rounded"><strong>Anfrage:</strong> ${botReply}</div>`;
-                chatbox.scrollTop = chatbox.scrollHeight;
-    
-                // Create a new tab
-                const tabId = `Anfrage #${document.querySelectorAll('.nav-link').length + 1}`;
-                const tabLink = document.createElement('a');
-                tabLink.classList.add('nav-link');
-                tabLink.setAttribute('data-toggle', 'tab');
-                tabLink.setAttribute('href', `#${tabId}`);
-                tabLink.textContent = tabId;
-                document.querySelector('.nav-tabs').appendChild(tabLink);
-    
-                // Create a new tab-pane with the corresponding content
-                const tabPane = document.createElement('div');
-                tabPane.classList.add('tab-pane', 'fade');
-                tabPane.setAttribute('id', tabId);
-                tabPane.textContent = botReply;
-                document.querySelector('.tab-content').appendChild(tabPane);
-    
-                // Activate the new tab
-                tabLink.click();
+                    const botReply = await response.text();
+              
+                    // Create a new tab for the chat reply
+                    const chatTabs = document.getElementById('chatTabs');
+                    const tabId = `tab-${Date.now()}`;
+                    const tabButton = document.createElement('button');
+                    tabButton.className = 'btn btn-light';
+                    tabButton.innerText = `Anfrage #${chatTabs.children.length + 1}`;
+                    tabButton.addEventListener('click', () => showChatReply(tabId));
+                    chatTabs.appendChild(tabButton);
+              
+                    // Create a new chat reply div and hide it initially
+                    const chatReply = document.createElement('div');
+                    chatReply.className = 'p-2 mt-2';
+                    chatReply.id = tabId;
+                    chatReply.style.display = 'none';
+                    chatReply.innerHTML = `<strong>Anfrage:</strong> ${botReply}`;
+                    chatTabs.appendChild(chatReply);
+              
+                    // Show the newly created chat reply by default
+                    showChatReply(tabId);
             } else {
                 console.error('Error:', response.statusText);
             }
@@ -204,3 +202,15 @@ function showLoadingScreen() {
   
   // Initialize the chat by opening the first tab
   openChat('tab1');
+
+  function showChatReply(tabId) {
+    // Hide all chat replies
+    const chatReplies = document.querySelectorAll('.chat-reply');
+    chatReplies.forEach((reply) => (reply.style.display = 'none'));
+  
+    // Show the clicked chat reply
+    const selectedReply = document.getElementById(tabId);
+    if (selectedReply) {
+      selectedReply.style.display = 'block';
+    }
+  }
