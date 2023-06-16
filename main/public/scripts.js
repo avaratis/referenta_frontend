@@ -76,6 +76,7 @@ return inputData;
 async function submitChat() {
 
 showLoadingScreen();
+
 const inputData = compileInputData();
     const chatbox = document.getElementById('chatbox');
 
