@@ -78,7 +78,7 @@ async function submitChat() {
 showLoadingScreen();
 
 const inputData = compileInputData();
-    const chatbox = document.getElementById('chatbox');
+    const chatbox = document.getElementById('chatTabs');
 
     chatbox.style.display = 'block'; // Show the chat box
 
@@ -101,7 +101,7 @@ const inputData = compileInputData();
                     const botReply = await response.text();
               
                     // Create a new tab for the chat reply
-                    const chatTabs = document.getElementById('chatbox');
+                    const chatTabs = document.getElementById('chatTabs');
                     const tabId = `tab-${Date.now()}`;
                     const tabButton = document.createElement('button');
                     tabButton.className = 'btn btn-light';
@@ -177,7 +177,7 @@ console.log('File uploaded:', file);
 }
 
 function showLoadingScreen() {
-    const chatbox = document.getElementById('chatbox');
+    const chatbox = document.getElementById('chatTabs');
     const loadingScreen = document.createElement('div');
     loadingScreen.innerHTML = '<div class="loading-screen"><div class="loading-spinner"></div></div>';
   
