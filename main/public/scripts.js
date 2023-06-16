@@ -98,7 +98,7 @@ const inputData = compileInputData();
 
             if (response.ok) {
                 const botReply = await response.text();
-                chatbox.innerHTML += '<div class="p-2 mt-2 bg-primary text-white border rounded"><strong>Anfrage:</strong> ' + botReply + '</div>';
+                chatbox.innerHTML += '<div class="p-2 mt-2 bg-white text-dark border rounded"><strong>Anfrage:</strong> ' + botReply + '</div>';
                 inputData.value = '';
                 chatbox.scrollTop = chatbox.scrollHeight;
             } else {
@@ -169,3 +169,19 @@ function showLoadingScreen() {
     // Scroll to the bottom of the chatbox
     chatbox.scrollTop = chatbox.scrollHeight;
   }
+
+  function openChat(tabId) {
+    // Hide all chat tabs
+    const chatTabs = document.querySelectorAll('.chat-tab');
+    chatTabs.forEach(tab => {
+      tab.style.display = 'none';
+    });
+  
+    // Show the selected chat tab
+    const selectedTab = document.getElementById(tabId);
+    selectedTab.style.display = 'block';
+  }
+  
+  // Initialize the chat by opening the first tab
+  openChat('tab1');
+  
