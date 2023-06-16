@@ -97,7 +97,11 @@ const inputData = compileInputData();
             });
 
             if (response.ok) {
+
+
                 const botReply = await response.text();
+                chatbox.innerHTML += `<div class="p-2 mt-2 bg-primary text-white border rounded"><strong>Anfrage:</strong> ${botReply}</div>`;
+                chatbox.scrollTop = chatbox.scrollHeight;
     
                 // Create a new tab
                 const tabId = `Anfrage #${document.querySelectorAll('.nav-link').length + 1}`;
