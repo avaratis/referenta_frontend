@@ -78,7 +78,7 @@ async function submitChat() {
 showLoadingScreen();
 
 const inputData = compileInputData();
-    const chatbox = document.getElementById('chatbox');
+    const chatbox = document.getElementById('chatTabs');
 
     chatbox.style.display = 'block'; // Show the chat box
 
@@ -177,7 +177,7 @@ console.log('File uploaded:', file);
 }
 
 function showLoadingScreen() {
-    const chatbox = document.getElementById('chatbox');
+    const chatbox = document.getElementById('chatTabs');
     const loadingScreen = document.createElement('div');
     loadingScreen.innerHTML = '<div class="loading-screen"><div class="loading-spinner"></div></div>';
   
