@@ -98,9 +98,25 @@ const inputData = compileInputData();
 
             if (response.ok) {
                 const botReply = await response.text();
-                chatbox.innerHTML += '<div class="p-2 mt-2 bg-white text-dark border rounded"><strong>Anfrage:</strong> ' + botReply + '</div>';
-                inputData.value = '';
-                chatbox.scrollTop = chatbox.scrollHeight;
+    
+                // Create a new tab
+                const tabId = `Anfrage #${document.querySelectorAll('.nav-link').length + 1}`;
+                const tabLink = document.createElement('a');
+                tabLink.classList.add('nav-link');
+                tabLink.setAttribute('data-toggle', 'tab');
+                tabLink.setAttribute('href', `#${tabId}`);
+                tabLink.textContent = tabId;
+                document.querySelector('.nav-tabs').appendChild(tabLink);
+    
+                // Create a new tab-pane with the corresponding content
+                const tabPane = document.createElement('div');
+                tabPane.classList.add('tab-pane', 'fade');
+                tabPane.setAttribute('id', tabId);
+                tabPane.textContent = botReply;
+                document.querySelector('.tab-content').appendChild(tabPane);
+    
+                // Activate the new tab
+                tabLink.click();
             } else {
                 console.error('Error:', response.statusText);
             }
@@ -184,4 +200,3 @@ function showLoadingScreen() {
   
   // Initialize the chat by opening the first tab
   openChat('tab1');
-  
