@@ -133,29 +133,41 @@ cursor: pointer;
 }
 
 .loading-spinner {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
   position: relative;
-  width: 100px;
-  height: 100px;
   animation: spin 1s linear infinite;
 }
 
-.logo {
+.loading-spinner::before {
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
+  background-image: url('https://i.imgur.com/YVsEulW.png');
+  background-size: contain;
   opacity: 0;
   animation: fade 2s ease-in-out infinite;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes fade {
-  0%, 100% { opacity: 0; }
-  50% { opacity: 1; }
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
 }

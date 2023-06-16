@@ -161,7 +161,7 @@ console.log('File uploaded:', file);
 function showLoadingScreen() {
     const chatbox = document.getElementById('chatbox');
     const loadingScreen = document.createElement('div');
-    loadingScreen.innerHTML = '<div class="loading-spinner"><img src="https://i.imgur.com/YVsEulW.png" alt="Logo" class="logo"><div class="spinner"></div></div>';
+    loadingScreen.innerHTML = '<div class="loading-screen"><div class="loading-spinner"></div></div>';
   
     // Display the loading screen
     chatbox.appendChild(loadingScreen);
