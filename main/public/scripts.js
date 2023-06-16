@@ -115,7 +115,7 @@ const inputData = compileInputData();
                     chatReply.id = tabId;
                     chatReply.style.display = 'none';
                     chatReply.innerHTML = `<strong>Anfrage:</strong> ${botReply}`;
-                    chatTabs.appendChild(chatReply);
+                    chatTabs.insertBefore(chatReply, tabButton.nextSibling);
               
                     // Show the newly created chat reply by default
                     showChatReply(tabId);
