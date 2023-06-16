@@ -78,7 +78,7 @@ async function submitChat() {
 showLoadingScreen();
 
 const inputData = compileInputData();
-    const chatbox = document.getElementById('chatTabs');
+    const chatbox = document.getElementById('chatbox');
 
     chatbox.style.display = 'block'; // Show the chat box
 
@@ -101,7 +101,7 @@ const inputData = compileInputData();
                     const botReply = await response.text();
               
                     // Create a new tab for the chat reply
-                    const chatTabs = document.getElementById('chatTabs');
+                    const chatTabs = document.getElementById('chat-tab');
                     const tabId = `tab-${Date.now()}`;
                     const tabButton = document.createElement('button');
                     tabButton.className = 'btn btn-light';
