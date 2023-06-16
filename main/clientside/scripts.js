@@ -33,8 +33,14 @@ function displaySelectedValue(selectElement) {
         document.getElementById('selectedValueDisplay').textContent = `Selected Redner: ${selectedValue}`;
     }
 
-    function updateCharacterCount(inputElement) {
-        const characterCountElement = document.getElementById('characterCount');
+    function updateCharacterCountoTone(inputElement) {
+        const characterCountElement = document.getElementById('characterCountoTone');
+        const characterCount = inputElement.value.length;
+        characterCountElement.textContent = characterCount;
+    }
+
+    function updateCharacterCountHinweise(inputElement) {
+        const characterCountElement = document.getElementById('characterCountHinweise');
         const characterCount = inputElement.value.length;
         characterCountElement.textContent = characterCount;
     }
@@ -76,13 +82,14 @@ const inputData = compileInputData();
         chatbox.innerHTML += '<div class="p-2 mt-2 bg-light border rounded"><strong>Anfrage erhalten:</strong> ' + 'Bitte warten' + '</div>';
         console.log(inputData.oTone)
         try {
-            const response = await fetch('http://localhost:3000/getChatResponse', {
+            const response = await fetch('https://us-central1-referenta-30a27.cloudfunctions.net/api/getChatResponse', { // Update the URL to your deployed server 
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    prompt: "Task Speech: " + "Speaker: " + inputData.redner + " Topic " + inputData.oTone + "Language German " + "Speech length:  " +  inputData.length + " Position: " + (inputData.dafür == true ? " for that position " : " against that position ")
+                    prompt: "Task Speech: " + "Speaker: " + inputData.redner + " Topic " + inputData.oTone + " Language German " + "Maximum amount of words: " +  calculateWordsSpoken(inputData.length, wordsPerMinute) + " Minimum amount of words: " +  calculateWordsSpoken(inputData.length, 100) + " Position: " + (inputData.dafür == true ? " for that position " : " against that position "),
+                    maxTokens: calculateWordsSpoken(inputData.length, wordsPerMinute)
                 })
             });
 
@@ -98,6 +105,12 @@ const inputData = compileInputData();
             console.error('Error:', error);
         }
     
+}
+
+let wordsPerMinute = 130; // Average speech rate
+
+function calculateWordsSpoken(minutes, wordsPerMinute) {
+    return minutes * wordsPerMinute;
 }
 
 

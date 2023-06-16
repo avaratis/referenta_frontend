@@ -15,17 +15,10 @@ const openai = new OpenAIApi(configuration);
 
 app.post('/getChatResponse', async (req, res) => {
   const prompt = req.body.prompt;
+  const maxTokens = req.body.maxTokens;
 
   try {
-    const response = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo',
-      messages: [
-        {
-          role: 'user',
-          content: prompt,
-        }
-      ],
-    });
+    const response = generateText(prompt, maxTokens);
 
     if (response.data && response.data.choices && response.data.choices.length > 0) {
       const botReply = response.data.choices[0].message.content.trim();
@@ -42,3 +35,28 @@ app.post('/getChatResponse', async (req, res) => {
 app.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
+
+
+async function generateText(prompt, minWords) {
+  let text = "";
+  let words = [];
+
+  while (words.length < minWords) {
+      const response = await openai.createCompletion({
+          model: "ada",
+          prompt: prompt,
+          max_tokens: minWords, // A rough estimate: 5 tokens per word
+      });
+
+      text = response.data.choices[0].text.strip();
+      console.log(text);
+      words = text.split(' ');
+
+      console.log(words.length)
+      if (words.length < minWords) {
+          prompt += text; // Append the previous output to the prompt
+      }
+  }
+
+  return text;
+}
