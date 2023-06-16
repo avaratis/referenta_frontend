@@ -177,19 +177,17 @@ console.log('File uploaded:', file);
 }
 
 function showLoadingScreen() {
+    const chatbox = document.getElementById('chatTabs');
     const loadingScreen = document.createElement('div');
-    loadingScreen.classList.add('loading-screen');
-    loadingScreen.innerHTML = `
-      <div class="loading-spinner">
-        <div class="spinner"></div>
-        <img class="logo" src="https://i.imgur.com/JIC16iz.png" alt="Logo">
-      </div>
-    `;
+    loadingScreen.innerHTML = '<div class="loading-screen"><div class="loading-spinner"></div></div>';
   
-    const body = document.querySelector('body');
-    body.appendChild(loadingScreen);
+    // Display the loading screen
+    chatbox.appendChild(loadingScreen);
+  
+    // Scroll to the bottom of the chatbox
+    chatbox.scrollTop = chatbox.scrollHeight;
   }
-  
+
 
 
 
