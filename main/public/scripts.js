@@ -81,7 +81,7 @@ const inputData = compileInputData();
 
     chatbox.style.display = 'block'; // Show the chat box
 
-        chatbox.innerHTML += '<div class="p-2 mt-2 bg-light border rounded"><strong>Anfrage erhalten:</strong> ' + 'Bitte warten' + '</div>';
+        //chatbox.innerHTML += '<div class="p-2 mt-2 bg-light border rounded"><strong>Anfrage erhalten:</strong> ' + 'Bitte warten' + '</div>';
         console.log(inputData.oTone)
         try {
             const response = await fetch('https://us-central1-referenta-30a27.cloudfunctions.net/api/getChatResponse', { // Update the URL to your deployed server 
@@ -97,7 +97,7 @@ const inputData = compileInputData();
 
             if (response.ok) {
                 const botReply = await response.text();
-                chatbox.innerHTML += '<div class="p-2 mt-2 bg-primary text-white border rounded"><strong>Bot:</strong> ' + botReply + '</div>';
+                chatbox.innerHTML += '<div class="p-2 mt-2 bg-primary text-white border rounded"><strong>Anfrage:</strong> ' + botReply + '</div>';
                 inputData.value = '';
                 chatbox.scrollTop = chatbox.scrollHeight;
             } else {
@@ -160,7 +160,7 @@ console.log('File uploaded:', file);
 function showLoadingScreen() {
     const chatbox = document.getElementById('chatbox');
     const loadingScreen = document.createElement('div');
-    loadingScreen.innerHTML = '<div class="loading-screen">Loading...</div>';
+    loadingScreen.innerHTML = '<div class="loading-screen"><div class="loading-spinner"></div></div>';
   
     // Display the loading screen
     chatbox.appendChild(loadingScreen);
