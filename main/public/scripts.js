@@ -74,6 +74,8 @@ return inputData;
 }
 
 async function submitChat() {
+
+showLoadingScreen();
 const inputData = compileInputData();
     const chatbox = document.getElementById('chatbox');
 
@@ -104,6 +106,11 @@ const inputData = compileInputData();
         } catch (error) {
             console.error('Error:', error);
         }
+
+        const loadingScreen = document.querySelector('.loading-screen');
+        if (loadingScreen) {
+          loadingScreen.remove();
+        }    
     
 }
 
@@ -149,3 +156,15 @@ function handleFileUpload(file) {
 // You can perform additional processing or send the file to the server for further handling
 console.log('File uploaded:', file);
 }
+
+function showLoadingScreen() {
+    const chatbox = document.getElementById('chatbox');
+    const loadingScreen = document.createElement('div');
+    loadingScreen.innerHTML = '<div class="loading-screen">Loading...</div>';
+  
+    // Display the loading screen
+    chatbox.appendChild(loadingScreen);
+  
+    // Scroll to the bottom of the chatbox
+    chatbox.scrollTop = chatbox.scrollHeight;
+  }
