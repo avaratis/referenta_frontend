@@ -177,7 +177,7 @@ console.log('File uploaded:', file);
 }
 
 function showLoadingScreen() {
-    const chatbox = document.getElementById('chatTabs');
+    const chatbox = document.getElementById('chatbox');
     const loadingScreen = document.createElement('div');
     loadingScreen.innerHTML = '<div class="loading-screen"><div class="loading-spinner"></div></div>';
   
