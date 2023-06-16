@@ -133,11 +133,18 @@ cursor: pointer;
 }
 
 .loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid #045034;
   width: 80px;
   height: 80px;
   border-radius: 50%;
   position: relative;
   animation: spin 1s linear infinite;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform-origin: center;
+  transform: scale(0.8);
+  transition: transform 0.3s ease-in-out;
+
 }
 
 .loading-spinner::before {
@@ -152,6 +159,10 @@ cursor: pointer;
   background-size: contain;
   opacity: 0;
   animation: fade 2s ease-in-out infinite;
+}
+
+.loading-spinner:hover {
+  transform: scale(1);
 }
 
 @keyframes spin {
