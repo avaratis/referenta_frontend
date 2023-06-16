@@ -79,7 +79,7 @@ showLoadingScreen();
 
 const inputData = compileInputData();
     const chatbox = document.getElementById('chatTabs');
-
+    showLoadingScreen();
     chatbox.style.display = 'block'; // Show the chat box
 
         //chatbox.innerHTML += '<div class="p-2 mt-2 bg-light border rounded"><strong>Anfrage erhalten:</strong> ' + 'Bitte warten' + '</div>';
@@ -126,10 +126,7 @@ const inputData = compileInputData();
             console.error('Error:', error);
         }
 
-        const loadingScreen = document.querySelector('.loading-screen');
-        if (loadingScreen) {
-          loadingScreen.remove();
-        }    
+        hideLoadingScreen();
     
 }
 
@@ -177,15 +174,19 @@ console.log('File uploaded:', file);
 }
 
 function showLoadingScreen() {
-    const chatbox = document.getElementById('chatTabs');
     const loadingScreen = document.createElement('div');
-    loadingScreen.innerHTML = '<div class="loading-screen"><div class="loading-spinner"></div></div>';
-  
-    // Display the loading screen
-    chatbox.appendChild(loadingScreen);
-  
-    // Scroll to the bottom of the chatbox
-    chatbox.scrollTop = chatbox.scrollHeight;
+    loadingScreen.classList.add('loading-screen');
+    const spinner = document.createElement('div');
+    spinner.classList.add('spinner');
+    loadingScreen.appendChild(spinner);
+    document.body.appendChild(loadingScreen);
+  }
+
+  function hideLoadingScreen() {
+    const loadingScreen = document.querySelector('.loading-screen');
+    if (loadingScreen) {
+      loadingScreen.remove();
+    }
   }
 
   function openChat(tabId) {
