@@ -81,50 +81,62 @@ return inputData;
 async function submitChat() {
 
   showLoadingScreen();
-
-  const inputData = compileInputData();
-
-  try {
-      const response = await fetch('https://us-central1-referenta-30a27.cloudfunctions.net/api/getChatResponse', { 
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              prompt: "Task Speech: " + "Speaker: " + inputData.redner + " Topic " + inputData.oTone + " Language German " + "Maximum amount of words: " +  calculateWordsSpoken(inputData.length, wordsPerMinute) + " Position: " + (inputData.dafür == true ? " for that position " : " against that position "),
-              maxTokens: calculateWordsSpoken(inputData.length, wordsPerMinute)
-          })
-      });
-
-      if (response.ok) {
-          const botReply = await response.text();
-
-          // Find the currently active tab by looking for the 'active' class
-          const activeTab = document.querySelector('.tab-pane.fade.show.active');
-          if (!activeTab) {
-              console.error('No active tab found');
-              return;
-          }
-
-          // Create a new chat reply div and append it to the active tab
-          const chatReply = document.createElement('div');
-          chatReply.className = 'p-2 mt-2';
-          chatReply.innerHTML = `${botReply}`;
-          activeTab.appendChild(chatReply);
-      } else {
-          console.error('Error:', response.statusText);
-      }
-  } catch (error) {
-      console.error('Error:', error);
-  }
-
-  const loadingScreen = document.querySelector('.loading-screen');
-  if (loadingScreen) {
-    loadingScreen.remove();
-  }    
   
-}
-
+  const inputData = compileInputData();
+      const chatbox = document.getElementById(document.querySelector('.tab-pane.fade.show.active'));
+  
+      chatbox.style.display = 'block'; // Show the chat box
+  
+          //chatbox.innerHTML += '<div class="p-2 mt-2 bg-light border rounded"><strong>Anfrage erhalten:</strong> ' + 'Bitte warten' + '</div>';
+          console.log(inputData.oTone)
+          try {
+              const response = await fetch('https://us-central1-referenta-30a27.cloudfunctions.net/api/getChatResponse', { // Update the URL to your deployed server 
+                  method: 'POST',
+                  headers: {
+                      'Content-Type': 'application/json'
+                  },
+                  body: JSON.stringify({
+                      prompt: "Task Speech: " + "Speaker: " + inputData.redner + " Topic " + inputData.oTone + " Language German " + "Maximum amount of words: " +  calculateWordsSpoken(inputData.length, wordsPerMinute) + " Position: " + (inputData.dafür == true ? " for that position " : " against that position "),
+                      maxTokens: calculateWordsSpoken(inputData.length, wordsPerMinute)
+                  })
+              });
+  
+              if (response.ok) {
+  
+                      const botReply = await response.text();
+                
+                      // Create a new tab for the chat reply
+                      const chatTabs = document.querySelector('.tab-pane.fade.show.active');
+                      const tabId = `tab-${Date.now()}`;
+                      const tabButton = document.createElement('button');
+                      tabButton.className = 'btn btn-light';
+                      tabButton.innerText = `Anfrage #${chatTabs.children.length + 1}`;
+                      tabButton.addEventListener('click', () => showChatReply(tabId));
+                      chatTabs.appendChild(tabButton);
+                
+                      // Create a new chat reply div and hide it initially
+                      const chatReply = document.createElement('div');
+                      chatReply.className = 'p-2 mt-2';
+                      chatReply.id = tabId;
+                      chatReply.style.display = 'none';
+                      chatReply.innerHTML = `${botReply}`;
+                      chatTabs.insertBefore(chatReply, tabButton.nextSibling);
+                
+                      // Show the newly created chat reply by default
+                      showChatReply(tabId);
+              } else {
+                  console.error('Error:', response.statusText);
+              }
+          } catch (error) {
+              console.error('Error:', error);
+          }
+  
+          const loadingScreen = document.querySelector('.loading-screen');
+          if (loadingScreen) {
+            loadingScreen.remove();
+          }    
+      
+  }
 
 let wordsPerMinute = 130; // Average speech rate
 
@@ -190,7 +202,7 @@ function handleFileUpload(event) {
 
 
 function showLoadingScreen() {
-    const chatbox = document.getElementById('chatTabs');
+    const chatbox = document.getElementById(document.querySelector('.tab-pane.fade.show.active'));
     const loadingScreen = document.createElement('div');
     loadingScreen.innerHTML = '<div class="loading-screen"><div class="loading-spinner"></div></div>';
   
