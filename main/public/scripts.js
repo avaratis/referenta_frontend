@@ -84,7 +84,7 @@ showLoadingScreen();
 
 const inputData = compileInputData();
     const chatTabs = document.getElementById('chatTabs');
-    const chatbox = document.getElementById('chaBox');
+    const chatbox = document.getElementById('chatBox');
 
     chatbox.style.display = 'block'; // Show the chat box
     chatTabs.style.display = 'block'; // Show the chat tabs
