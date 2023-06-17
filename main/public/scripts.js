@@ -153,11 +153,11 @@ const inputData = compileInputData();
 
                     let wordCount = countWordsLetters(botReply).wordCount;
                     let letterCount = countWordsLetters(botReply).letterCount;
-                    let mostUsedWords = mostUsedWords(botReply, 5);
+                    let topUsedWords  = mostUsedWords(botReply, 5);
 
                     document.getElementById('wordCount').innerText = wordCount;
                     document.getElementById('letterCount').innerText = letterCount;
-                    document.getElementById('mostUsedWords').innerText = mostUsedWords;
+                    document.getElementById('mostUsedWords').innerText = topUsedWords ;
 
               
                     // Create a new tab for the chat reply
