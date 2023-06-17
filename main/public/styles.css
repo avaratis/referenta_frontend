@@ -81,6 +81,17 @@ body {
     color: black;
   }
 
+#chatTabs {
+    display: none;
+}
+
+.chatTab {
+  display: none;
+}
+
+.chatBox{
+  display: none;
+}
 .dropzone {
 display: flex;
 flex-direction: column;
