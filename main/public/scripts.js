@@ -202,7 +202,7 @@ function handleFileUpload(event) {
 
 
 function showLoadingScreen() {
-    const chatbox = document.getElementById(document.querySelector('.tab-pane.fade.show.active'));
+    const chatbox = document.querySelector('.tab-pane.fade.show.active');
     const loadingScreen = document.createElement('div');
     loadingScreen.innerHTML = '<div class="loading-screen"><div class="loading-spinner"></div></div>';
   
