@@ -49,18 +49,18 @@
 
         <h2 class="my-4 text-center">Parameter Eingabe</h2>
 
-        <div class="form-group">
+        <div class="form-group" id="formgroup1">
             <div class="checkbox-container">
                 <label for="purposeField" class="selection-title">Zweck</label>
                 <div class="purpose-checkbox">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="" id="parliamentaryCheckbox" onclick="toggleCheckbox('parliamentaryCheckbox', 'otherCheckbox')">
+                        <input class="form-check-input" type="checkbox" value="" id="parliamentaryCheckbox" onclick="toggleCheckbox('parliamentaryCheckbox', 'formgroup1')">
                         <label class="form-check-label" for="parliamentaryCheckbox">
                             Parlamentarisch
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="" id="otherCheckbox" onclick="toggleCheckbox('otherCheckbox', 'parliamentaryCheckbox')">
+                        <input class="form-check-input" type="checkbox" value="" id="otherCheckbox" onclick="toggleCheckbox('otherCheckbox', 'formgroup1')">
                         <label class="form-check-label" for="otherCheckbox">
                             Andere
                         </label>
@@ -69,24 +69,24 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" id="formgroup2">
             <div class="checkbox-container">
                 <label for="purposeField" class="selection-title">Votum:</label>
                 <div class="purpose-checkbox">
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="" id="dafürCheckbox" onclick="toggleCheckbox('dafürCheckbox', 'dagegenCheckbox')">
+                        <input class="form-check-input" type="checkbox" value="" id="dafürCheckbox" onclick="toggleCheckbox('dafürCheckbox', 'formgroup2')">
                         <label class="form-check-label" for="dafürCheckbox">
                             dafür
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="" id="dagegenCheckbox" onclick="toggleCheckbox('dagegenCheckbox', 'dafürCheckbox')">
+                        <input class="form-check-input" type="checkbox" value="" id="dagegenCheckbox" onclick="toggleCheckbox('dagegenCheckbox', 'formgroup2')">
                         <label class="form-check-label" for="dagegenCheckbox">
                             dagegen
                         </label>
                     </div>
                     <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="" id="enthaltungCheckbox" onclick="toggleCheckbox('enthaltungCheckbox', 'dagegenCheckbox')">
+                        <input class="form-check-input" type="checkbox" value="" id="enthaltungCheckbox" onclick="toggleCheckbox('enthaltungCheckbox', 'formgroup2')">
                         <label class="form-check-label" for="enthaltungCheckbox">
                             enthaltung
                         </label>
@@ -97,7 +97,7 @@
 
         <div class="form-group">
             <label for="lengthSlider" class="selection-title">Länge</label>
-            <input type="range" class="form-control-range" id="lengthSlider" min="1" max="30" step="1" value="10">
+            <input type="range" class="form-control-range" id="lengthSlider" min="1" max="10" step="1" value="5">
             <output id="lengthOutput">10 minuten</output>
         </div>
 
@@ -109,7 +109,7 @@
                 <option value="Helmut Kohl">Helmut Kohl</option>
                 <option value="Konrad Adenauer">Konrad Adenauer</option>
                 <option value="Ernst Thälmann">Ernst Thälmann</option>
-                <option value="Ernst Thälmann">Benjamin Nethanyahu</option>
+                <option value="Benjamin Nethanyahu">Benjamin Nethanyahu</option>
             </select>
         </div>    
 

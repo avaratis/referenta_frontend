@@ -19,14 +19,19 @@ lengthSlider.addEventListener('input', function () {
     }
 });
 
-function toggleCheckbox(selectedCheckboxId, otherCheckboxId) {
-        const selectedCheckbox = document.getElementById(selectedCheckboxId);
-        const otherCheckbox = document.getElementById(otherCheckboxId);
-
-        if (selectedCheckbox.checked) {
-            otherCheckbox.checked = false;
-        }
+function toggleCheckbox(clickedCheckboxId, formGroupId) {
+  const clickedCheckbox = document.getElementById(clickedCheckboxId);
+  const formGroup = document.getElementById(formGroupId);
+  const checkboxes = formGroup.querySelectorAll('.form-check-input');
+  
+  checkboxes.forEach(checkbox => {
+    if (checkbox !== clickedCheckbox) {
+      checkbox.checked = false;
     }
+  });
+}
+
+
 
 function displaySelectedValue(selectElement) {
         const selectedValue = selectElement.value;
@@ -161,7 +166,7 @@ dropzone.classList.remove('dragover');
 dropzone.addEventListener('drop', (e) => {
 e.preventDefault();
 dropzone.classList.remove('dragover');
-
+});
 // Retrieve the dropped file
 const file = e.dataTransfer.files[0];
 
@@ -193,8 +198,8 @@ function handleFileUpload(event) {
         uploadComplete(uploadTask.snapshot.ref);
       }
     );
-  }
-  
+    }
+
 
 function showLoadingScreen() {
     const chatbox = document.getElementById('chatTabs');
