@@ -198,3 +198,7 @@ cursor: pointer;
     opacity: 1;
   }
 }
+
+.side-container {
+  margin-top: 5.7%; /* Adds space to the left outside the new container */
+}

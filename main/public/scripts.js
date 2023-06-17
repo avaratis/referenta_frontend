@@ -106,6 +106,12 @@ const inputData = compileInputData();
             if (response.ok) {
 
                     const botReply = await response.text();
+
+                    let wordCount = countWordsLetters(botReply).wordCount;
+                    let letterCount = countWordsLetters(botReply).letterCount;
+
+                    document.getElementById('wordCount').innerText = wordCount;
+                    document.getElementById('letterCount').innerText = letterCount;
               
                     // Create a new tab for the chat reply
                     const chatTabs = document.getElementById('chatTabs');
@@ -244,3 +250,38 @@ function showLoadingScreen() {
       selectedReply.style.display = 'block';
     }
   }
+
+
+  function countWordsLetters(text) {
+    const words = text.split(' ');
+
+    let letterCount = 0;
+    let wordCount = words.length;
+
+    words.forEach(word => {
+        letterCount += word.length;
+    });
+
+    return {
+        wordCount,
+        letterCount
+    };
+}
+
+function mostUsedWords(text, limit) {
+    const words = text.toLowerCase().split(' ');
+    const wordCounts = {};
+
+    words.forEach(word => {
+        if (wordCounts.hasOwnProperty(word)) {
+            wordCounts[word]++;
+        } else {
+            wordCounts[word] = 1;
+        }
+    });
+
+    // Sort the words by count
+    let sortedWords = Object.keys(wordCounts).sort((a, b) => wordCounts[b] - wordCounts[a]);
+
+    return sortedWords.slice(0, limit);
+}

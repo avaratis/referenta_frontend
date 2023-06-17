@@ -16,135 +16,171 @@
         <img src="https://i.imgur.com/JIC16iz.png" alt="Logo" class="logo">
         <h1>REFERENTA</h1>
     </div>
-
     <div class="container">
-        <ul class="nav nav-tabs mt-4" id="chatTab">
-            <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#chat-tab-1">Variante #1</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#chat-tab-2">Variante #2</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#chat-tab-3">Variante #3</a>
-            </li>
-        </ul>
-        
-        <div class="tab-content" id="chatBox"">
-            <div class="tab-pane fade show active" id="chat-tab-1">
-                <div id="chatTabs" class="border rounded p-3 mb-4" style="height: 500px; overflow: auto;">
-                    <!-- Chat messages for tab 1 will be added here -->
+        <div class="row">
+            <div class="col-lg-8">
+
+                <div class="container">
+                    <ul class="nav nav-tabs mt-4" id="chatTab">
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#chat-tab-1">Variante #1</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#chat-tab-2">Variante #2</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#chat-tab-3">Variante #3</a>
+                        </li>
+                    </ul>
+
+                    <div class="tab-content" id="chatBox"">
+                        <div class="tab-pane fade show active" id="chat-tab-1">
+                            <div id="chatTabs" class="border rounded p-3 mb-4" style="height: 500px; overflow: auto;">
+                                <!-- Chat messages for tab 1 will be added here -->
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="chat-tab-2">
+                            <div class="border rounded p-3 mb-4" style="height: 500px; overflow: auto;">
+                                <!-- Chat messages for tab 2 will be added here -->
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="chat-tab-3">
+                            <div class="border rounded p-3 mb-4" style="height: 500px; overflow: auto;">
+                                <!-- Chat messages for tab 3 will be added here -->
+                            </div>
+                        </div>
+                    </div>
+
+                
+                    <h2 class="my-4 text-center">Parameter Eingabe</h2>
+                
+                    <div class="form-group" id="formgroup1">
+                        <div class="checkbox-container">
+                            <label for="purposeField" class="selection-title">Zweck</label>
+                            <div class="purpose-checkbox">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" value="" id="parliamentaryCheckbox" onclick="toggleCheckbox('parliamentaryCheckbox', 'formgroup1')">
+                                    <label class="form-check-label" for="parliamentaryCheckbox">
+                                        Parlamentarisch
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" value="" id="otherCheckbox" onclick="toggleCheckbox('otherCheckbox', 'formgroup1')">
+                                    <label class="form-check-label" for="otherCheckbox">
+                                        Andere
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="form-group" id="formgroup2">
+                        <div class="checkbox-container">
+                            <label for="purposeField" class="selection-title">Votum:</label>
+                            <div class="purpose-checkbox">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" value="" id="dafürCheckbox" onclick="toggleCheckbox('dafürCheckbox', 'formgroup2')">
+                                    <label class="form-check-label" for="dafürCheckbox">
+                                        dafür
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" value="" id="dagegenCheckbox" onclick="toggleCheckbox('dagegenCheckbox', 'formgroup2')">
+                                    <label class="form-check-label" for="dagegenCheckbox">
+                                        dagegen
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" value="" id="enthaltungCheckbox" onclick="toggleCheckbox('enthaltungCheckbox', 'formgroup2')">
+                                    <label class="form-check-label" for="enthaltungCheckbox">
+                                        enthaltung
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="lengthSlider" class="selection-title">Länge</label>
+                        <input type="range" class="form-control-range" id="lengthSlider" min="1" max="10" step="1" value="5">
+                        <output id="lengthOutput">5 minuten</output>
+                    </div>
+                
+                
+                    <div class="form-group">
+                        <label for="rednerSelect" class="selection-title">Redner:</label>
+                        <select class="custom-select" id="rednerSelect" onchange="displaySelectedValue(this)">
+                            <option selected disabled>Select a Redner</option>
+                            <option value="Helmut Kohl">Helmut Kohl</option>
+                            <option value="Konrad Adenauer">Konrad Adenauer</option>
+                            <option value="Ernst Thälmann">Ernst Thälmann</option>
+                            <option value="Benjamin Nethanyahu">Benjamin Nethanyahu</option>
+                        </select>
+                    </div>    
+                
+                
+                    <div class="form-group">
+                        <label for="oToneInput" class="selection-title"> O-Töne:</label>
+                        <input type="text" class="form-control" id="oToneInput" maxlength="500" oninput="updateCharacterCountoTone(this)">
+                        <div class="character-counter">
+                            <span id="characterCountoTone">0</span> / 500 characters
+                        </div>
+                    </div>
+                
+                    <div class="form-group">
+                        <label for="hinweiseInput" class="selection-title"> Zusätzliche Hinweise:</label>
+                        <input type="text" class="form-control" id="hinweiseInput" maxlength="500" oninput="updateCharacterCountHinweise(this)">
+                        <div class="character-counter">
+                            <span id="characterCountHinweise">0</span> / 500 characters
+                        </div>
+                    </div>
+                
+                    <label for="hinweiseInput" class="selection-title"> Drucksachen Hochladen:</label>
+                
+                    <div id="dropzone1" class="dropzone">
+                        <i class="far fa-file-pdf"></i>
+                        <p>Drag and drop a PDF file here to upload</p>
+                      </div>
+                  
+                      <div class="d-flex justify-content-end mt-3">
+                    
+                    </div>
+                
+
+                
+                    <div class="text-right">
+                         <button class="btn btn-success custom-button" onclick="submitChat()">Rede erstellen</button>
+                    </div>
+                </div>
+                        
+            </div>
+
+
+            <div class="col-lg-4 side-container">
+                        <!-- New container for Word count, Letter count, and Most used words -->
+                <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Daten</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">Anzahl Wörter:</h6>
+                                <p class="card-text" id="wordCount">0</p>
+                                <h6 class="card-subtitle mb-2 text-muted">Anzahl Zeichen:</h6>
+                                <p class="card-text" id="letterCount">0</p>
+                                <h6 class="card-subtitle mb-2 text-muted">Meistgenutze Wörter:</h6>
+                                <p class="card-text" id="mostUsedWords">None</p>
+                            </div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="chat-tab-2">
-                <div class="border rounded p-3 mb-4" style="height: 500px; overflow: auto;">
-                    <!-- Chat messages for tab 2 will be added here -->
-                </div>
-            </div>
-            <div class="tab-pane fade" id="chat-tab-3">
-                <div class="border rounded p-3 mb-4" style="height: 500px; overflow: auto;">
-                    <!-- Chat messages for tab 3 will be added here -->
-                </div>
-            </div>
         </div>
-        
-
-        <h2 class="my-4 text-center">Parameter Eingabe</h2>
-
-        <div class="form-group" id="formgroup1">
-            <div class="checkbox-container">
-                <label for="purposeField" class="selection-title">Zweck</label>
-                <div class="purpose-checkbox">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="" id="parliamentaryCheckbox" onclick="toggleCheckbox('parliamentaryCheckbox', 'formgroup1')">
-                        <label class="form-check-label" for="parliamentaryCheckbox">
-                            Parlamentarisch
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="" id="otherCheckbox" onclick="toggleCheckbox('otherCheckbox', 'formgroup1')">
-                        <label class="form-check-label" for="otherCheckbox">
-                            Andere
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group" id="formgroup2">
-            <div class="checkbox-container">
-                <label for="purposeField" class="selection-title">Votum:</label>
-                <div class="purpose-checkbox">
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="" id="dafürCheckbox" onclick="toggleCheckbox('dafürCheckbox', 'formgroup2')">
-                        <label class="form-check-label" for="dafürCheckbox">
-                            dafür
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="" id="dagegenCheckbox" onclick="toggleCheckbox('dagegenCheckbox', 'formgroup2')">
-                        <label class="form-check-label" for="dagegenCheckbox">
-                            dagegen
-                        </label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="checkbox" value="" id="enthaltungCheckbox" onclick="toggleCheckbox('enthaltungCheckbox', 'formgroup2')">
-                        <label class="form-check-label" for="enthaltungCheckbox">
-                            enthaltung
-                        </label>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="lengthSlider" class="selection-title">Länge</label>
-            <input type="range" class="form-control-range" id="lengthSlider" min="1" max="10" step="1" value="5">
-            <output id="lengthOutput">5 minuten</output>
-        </div>
-
-
-        <div class="form-group">
-            <label for="rednerSelect" class="selection-title">Redner:</label>
-            <select class="custom-select" id="rednerSelect" onchange="displaySelectedValue(this)">
-                <option selected disabled>Select a Redner</option>
-                <option value="Helmut Kohl">Helmut Kohl</option>
-                <option value="Konrad Adenauer">Konrad Adenauer</option>
-                <option value="Ernst Thälmann">Ernst Thälmann</option>
-                <option value="Benjamin Nethanyahu">Benjamin Nethanyahu</option>
-            </select>
-        </div>    
-
-
-        <div class="form-group">
-            <label for="oToneInput" class="selection-title"> O-Töne:</label>
-            <input type="text" class="form-control" id="oToneInput" maxlength="500" oninput="updateCharacterCountoTone(this)">
-            <div class="character-counter">
-                <span id="characterCountoTone">0</span> / 500 characters
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="hinweiseInput" class="selection-title"> Zusätzliche Hinweise:</label>
-            <input type="text" class="form-control" id="hinweiseInput" maxlength="500" oninput="updateCharacterCountHinweise(this)">
-            <div class="character-counter">
-                <span id="characterCountHinweise">0</span> / 500 characters
-            </div>
-        </div>
-
-
-        <div id="dropzone" class="dropzone">
-            <i class="far fa-file-pdf"></i>
-            <p>Drag and drop a PDF file here to upload</p>
-          </div>
-
-          <div class="d-flex justify-content-end mt-3">
-
-
-            <button class="btn btn-success custom-button" onclick="submitChat()">Rede erstellen</button>
-        </div>
-
     </div>
+         
+            
+            
+            
+            
+            
+            
+
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
