@@ -94,30 +94,31 @@ function countWordsLetters(text) {
   };
 }
 
-function mostUsedWords(text, numWords) {
-  // Split text into words
-  let words = text.split(/\s+/);
+function mostUsedWords(text, numberOfWords) {
+  const words = text.split(/\s+/);
+  const wordCounts = {};
 
-  // Count the frequency of each word
-  let wordFrequencies = {};
-  for (let word of words) {
-      word = word.toLowerCase();
-      if (wordFrequencies[word] === undefined) {
-          wordFrequencies[word] = 1;
-      } else {
-          wordFrequencies[word] += 1;
+  words.forEach((word) => {
+      // Add a condition to exclude words shorter than 5 letters
+      if (word.length >= 5) {
+          if (wordCounts[word]) {
+              wordCounts[word]++;
+          } else {
+              wordCounts[word] = 1;
+          }
       }
+  });
+
+  let sortable = [];
+  for (let word in wordCounts) {
+      sortable.push({word: word, count: wordCounts[word]});
   }
 
-  // Sort the words by frequency
-  let sortedWords = Object.keys(wordFrequencies).sort((a, b) => {
-      return wordFrequencies[b] - wordFrequencies[a];
+  sortable.sort((a, b) => {
+      return b.count - a.count;
   });
 
-  // Return the top `numWords` words
-  return sortedWords.slice(0, numWords).map(word => {
-      return {word: word, count: wordFrequencies[word]};
-  });
+  return sortable.slice(0, numberOfWords);
 }
 
 
@@ -129,6 +130,19 @@ showLoadingScreen();
 const inputData = compileInputData();
     const chatTabs = document.getElementById('chatTabs');
     const chatbox = document.getElementById('chatBox');
+
+    let selectedZweck = document.querySelector('#parliamentaryCheckbox').checked ? 'Parlamentarisch' : 'Andere';
+    let selectedVotum = document.querySelector('#dafürCheckbox').checked ? 'dafür' : (document.querySelector('#dagegenCheckbox').checked ? 'dagegen' : 'enthaltung');
+    let selectedLänge = document.querySelector('#lengthSlider').value;
+    let selectedRedner = document.querySelector('#rednerSelect').value;
+    let selectedOTone = document.querySelector('#oToneInput').value;
+
+    // Set these values to the respective elements in the "Selected Parameters" card
+    document.getElementById('selectedZweck').innerText = selectedZweck;
+    document.getElementById('selectedVotum').innerText = selectedVotum;
+    document.getElementById('selectedLänge').innerText = selectedLänge + ' Minuten';
+    document.getElementById('selectedRedner').innerText = selectedRedner;
+    document.getElementById('selectedOTone').innerText = selectedOTone;
 
     chatbox.style.display = 'block'; // Show the chat box
     chatTabs.style.display = 'block'; // Show the chat tabs
