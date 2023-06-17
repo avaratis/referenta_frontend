@@ -106,7 +106,7 @@ const inputData = compileInputData();
                     const botReply = await response.text();
               
                     // Create a new tab for the chat reply
-                    const chatTabs = document.getElementById('navTabs');
+                    const chatTabs = document.getElementById('chatTabs');
                     const tabId = `tab-${Date.now()}`;
                     const tabButton = document.createElement('button');
                     tabButton.className = 'btn btn-light';
