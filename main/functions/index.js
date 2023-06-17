@@ -43,12 +43,10 @@ app.post('/getChatResponse', async (req, res) => {
   try {
     while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createChatCompletion({
-        model: 'gpt-3.5-turbo',
-        engine: "davinci",
+        model: "text-davinci-003",
         prompt: prompt,
         max_tokens: maxTokens,
         temperature: 0.1,
-        top_p: 0.95
       });
 
       if (response.data && response.data.choices && response.data.choices.length > 0) {
