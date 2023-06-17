@@ -44,13 +44,13 @@ app.post('/getChatResponse', async (req, res) => {
     while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: "Say this is a test",
-        max_tokens: 7,
-        temperature: 0,
+        prompt: prompt,
+        max_tokens: maxTokens,
+        temperature: 0.1,
       });
 
       if (response.data && response.data.choices && response.data.choices.length > 0) {
-        const botReply = response.data.choices[0].message.content.trim();
+        const botReply = response.data.choices[0].text.trim();
         fullResponse += botReply;
         totalTokensGenerated += countTokens(botReply);  // you will need to implement the countTokens function
         prompt = botReply;
