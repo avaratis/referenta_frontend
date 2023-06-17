@@ -78,6 +78,42 @@ const inputData = {
 return inputData;
 }
 
+function countWordsLetters(text) {
+  const words = text.split(' ');
+
+  let letterCount = 0;
+  let wordCount = words.length;
+
+  words.forEach(word => {
+      letterCount += word.length;
+  });
+
+  return {
+      wordCount,
+      letterCount
+  };
+}
+
+function mostUsedWords(text, limit) {
+  const words = text.toLowerCase().split(' ');
+  const wordCounts = {};
+
+  words.forEach(word => {
+      if (wordCounts.hasOwnProperty(word)) {
+          wordCounts[word]++;
+      } else {
+          wordCounts[word] = 1;
+      }
+  });
+
+  // Sort the words by count
+  let sortedWords = Object.keys(wordCounts).sort((a, b) => wordCounts[b] - wordCounts[a]);
+
+  return sortedWords.slice(0, limit);
+}
+
+
+
 async function submitChat() {
 
 showLoadingScreen();
@@ -255,36 +291,4 @@ function showLoadingScreen() {
   }
 
 
-  function countWordsLetters(text) {
-    const words = text.split(' ');
 
-    let letterCount = 0;
-    let wordCount = words.length;
-
-    words.forEach(word => {
-        letterCount += word.length;
-    });
-
-    return {
-        wordCount,
-        letterCount
-    };
-}
-
-function mostUsedWords(text, limit) {
-    const words = text.toLowerCase().split(' ');
-    const wordCounts = {};
-
-    words.forEach(word => {
-        if (wordCounts.hasOwnProperty(word)) {
-            wordCounts[word]++;
-        } else {
-            wordCounts[word] = 1;
-        }
-    });
-
-    // Sort the words by count
-    let sortedWords = Object.keys(wordCounts).sort((a, b) => wordCounts[b] - wordCounts[a]);
-
-    return sortedWords.slice(0, limit);
-}
