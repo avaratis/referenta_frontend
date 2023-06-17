@@ -94,22 +94,30 @@ function countWordsLetters(text) {
   };
 }
 
-function mostUsedWords(text, limit) {
-  const words = text.toLowerCase().split(' ');
-  const wordCounts = {};
+function mostUsedWords(text, numWords) {
+  // Split text into words
+  let words = text.split(/\s+/);
 
-  words.forEach(word => {
-      if (wordCounts.hasOwnProperty(word)) {
-          wordCounts[word]++;
+  // Count the frequency of each word
+  let wordFrequencies = {};
+  for (let word of words) {
+      word = word.toLowerCase();
+      if (wordFrequencies[word] === undefined) {
+          wordFrequencies[word] = 1;
       } else {
-          wordCounts[word] = 1;
+          wordFrequencies[word] += 1;
       }
+  }
+
+  // Sort the words by frequency
+  let sortedWords = Object.keys(wordFrequencies).sort((a, b) => {
+      return wordFrequencies[b] - wordFrequencies[a];
   });
 
-  // Sort the words by count
-  let sortedWords = Object.keys(wordCounts).sort((a, b) => wordCounts[b] - wordCounts[a]);
-
-  return sortedWords.slice(0, limit);
+  // Return the top `numWords` words
+  return sortedWords.slice(0, numWords).map(word => {
+      return {word: word, count: wordFrequencies[word]};
+  });
 }
 
 
