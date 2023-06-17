@@ -85,9 +85,11 @@ body {
     display: none;
 }
 
-.chatTab {
+#chatTab {
   display: none;
 }
+
+
 
 .chatBox{
   display: none;

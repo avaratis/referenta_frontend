@@ -128,6 +128,8 @@ async function submitChat() {
 showLoadingScreen();
 
 const inputData = compileInputData();
+
+
     const chatTabs = document.getElementById('chatTabs');
     const chatbox = document.getElementById('chatBox');
 
@@ -144,6 +146,8 @@ const inputData = compileInputData();
     document.getElementById('selectedRedner').innerText = selectedRedner;
     document.getElementById('selectedOTone').innerText = selectedOTone;
 
+    // Unhide the tabs
+    document.getElementById('chatTab').style.display = 'flex';
     chatbox.style.display = 'block'; // Show the chat box
     chatTabs.style.display = 'block'; // Show the chat tabs
 
