@@ -42,7 +42,7 @@ app.post('/getChatResponse', async (req, res) => {
 
   try {
     while (totalTokensGenerated < totalTokensNeeded) {
-      const response = await openai.createChatCompletion({
+      const response = await openai.createCompletion({
         model: "text-davinci-003",
         prompt: prompt,
         max_tokens: maxTokens,
