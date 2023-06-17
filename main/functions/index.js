@@ -20,39 +20,60 @@ const cors = require('cors');
 const { Configuration, OpenAIApi } = require("openai");
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: true }));
 app.use(bodyParser.json());
 
 const configuration = new Configuration({
   apiKey: functions.config().openai.api_key,
 });
+
+
 const openai = new OpenAIApi(configuration);
 
+app.options('*', cors());
+
 app.post('/getChatResponse', async (req, res) => {
-  const prompt = req.body.prompt;
+  let prompt = req.body.prompt;
   const maxTokens = req.body.maxTokens;
+  const totalTokensNeeded = req.body.totalTokensNeeded;  // the total number of tokens you want to generate
+
+  let fullResponse = '';
+  let totalTokensGenerated = 0;
 
   try {
-    const response = await openai.createChatCompletion({
-      model: 'gpt-3.5-turbo',
-      messages: [
-        {
-          role: 'user',
-          content: prompt,
-        }
-      ],
-    });
+    while (totalTokensGenerated < totalTokensNeeded) {
+      const response = await openai.createChatCompletion({
+        model: 'gpt-3.5-turbo',
+        engine: "davinci",
+        prompt: prompt,
+        max_tokens: maxTokens,
+        temperature: 0.1,
+        top_p: 0.95
+      });
 
-    if (response.data && response.data.choices && response.data.choices.length > 0) {
-      const botReply = response.data.choices[0].message.content.trim();
-      res.send(botReply);
-    } else {
-      throw new Error('Invalid response received from OpenAI API');
+      if (response.data && response.data.choices && response.data.choices.length > 0) {
+        const botReply = response.data.choices[0].message.content.trim();
+        fullResponse += botReply;
+        totalTokensGenerated += countTokens(botReply);  // you will need to implement the countTokens function
+        prompt = botReply;
+      } else {
+        throw new Error('Invalid response received from OpenAI API');
+      }
     }
+
+    res.send(fullResponse);
   } catch (error) {
     console.error("Error in /getChatResponse:", error.message, error);
     res.status(500).json({ error: error.message });
   }
 });
 
+
 exports.api = functions.https.onRequest(app);
+
+function countTokens(text) {
+  // This function splits the text into words and punctuation, and counts the number of parts.
+  // Note that this is still an approximation and will not match OpenAI's token count exactly.
+  let tokens = text.match(/[\wäöüßÄÖÜ]+|[^\w\s]/gi);
+  return tokens ? tokens.length : 0;
+}
