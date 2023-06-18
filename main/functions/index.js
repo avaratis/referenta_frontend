@@ -53,7 +53,7 @@ app.post('/getChatResponse', async (req, res) => {
       });
 
       if (response.data && response.data.choices && response.data.choices.length > 0) {
-        const botReply = response.data.choices[0].text.trim();
+        const botReply = response.data.choices[0].message.content.trim();
         fullResponse += botReply;
         totalTokensGenerated += countTokens(botReply);  // you will need to implement the countTokens function
         prompt = botReply;
