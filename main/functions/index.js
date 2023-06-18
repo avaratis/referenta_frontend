@@ -41,11 +41,11 @@ app.post('/getChatResponse', async (req, res) => {
   let totalTokensGenerated = 0;
 
   try {
-    //while (totalTokensGenerated < totalTokensNeeded) {
+    while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createCompletion({
         model: "text-ada-001",
         prompt: prompt,
-        max_tokens: maxTokens,
+        max_tokens: 1500,
         temperature: 0.1,
       });
 
@@ -57,7 +57,7 @@ app.post('/getChatResponse', async (req, res) => {
       } else {
         throw new Error('Invalid response received from OpenAI API');
       }
-    //}
+    }
 
     res.send(fullResponse);
   } catch (error) {
