@@ -43,11 +43,25 @@ app.post('/getChatResponse', async (req, res) => {
   try {
     while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createChatCompletion({
-        model: 'gpt-4-0613',
+        model: 'gpt-3-turbo',
         messages: [
           {
             role: 'user',
             content: prompt,
+          }
+        ],
+        functions: [
+          {
+              "name": "write-speech-in-german",
+              "description": "Schreibe eine Rede auf deutsch, welche für den Deutschen Bundestag geignet ist, die der Angabe der minimum Wörter entspricht und den tonalen parametern",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "party": "Alternative für Deutschland",
+                  "stil": "polemisch",
+                  "typ": "parlamentarische rede"
+                }
+              }
           }
         ],
       });
