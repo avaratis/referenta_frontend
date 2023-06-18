@@ -50,7 +50,7 @@ app.post('/getChatResponse', async (req, res) => {
             content: prompt,
           }
         ],
-        max_tokens: 8000,
+        max_tokens: 1000,
         
         
         functions: [
