@@ -43,7 +43,7 @@ app.post('/getChatResponse', async (req, res) => {
   try {
     while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createChatCompletion({
-        model: 'gpt-4',
+        model: 'gpt-4-0613',
         messages: [
           {
             role: 'user',
