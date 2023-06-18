@@ -43,7 +43,7 @@ app.post('/getChatResponse', async (req, res) => {
   try {
     while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createChatCompletion({
-        model: 'gpt-3.5-turbo',
+        model: 'gpt-4',
         messages: [
           {
             role: 'user',
@@ -56,7 +56,7 @@ app.post('/getChatResponse', async (req, res) => {
         const botReply = response.data.choices[0].message.content.trim();
         fullResponse += botReply;
         totalTokensGenerated += countTokens(botReply);  // you will need to implement the countTokens function
-        prompt = botReply;
+        prompt = "Original Prompt: " + prompt + "Alraedy generated text: " + botReply;
       } else {
         throw new Error('Invalid response received from OpenAI API');
       }
