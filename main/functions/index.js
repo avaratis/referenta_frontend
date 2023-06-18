@@ -49,7 +49,7 @@ app.post('/getChatResponse', async (req, res) => {
             role: 'user',
             content: prompt,
           }
-        ],
+        ],/*
         functions: [
           {
               "name": "write-speech-in-german",
@@ -59,11 +59,13 @@ app.post('/getChatResponse', async (req, res) => {
                 "properties": {
                   "party": "Alternative für Deutschland",
                   "stil": "polemisch",
-                  "typ": "parlamentarische rede"
-                }
+                  "typ": "parlamentarische rede",
+                  "language": "German"
+                },
+                "required": ["language"]
               }
           }
-        ],
+        ],*/
       });
 
       if (response.data && response.data.choices && response.data.choices.length > 0) {
