@@ -43,7 +43,7 @@ app.post('/getChatResponse', async (req, res) => {
   try {
     while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createChatCompletion({
-        model: 'gpt-3-turbo',
+        model: 'gpt-3.5-turbo',
         messages: [
           {
             role: 'user',
@@ -53,7 +53,7 @@ app.post('/getChatResponse', async (req, res) => {
         functions: [
           {
               "name": "write-speech-in-german",
-              "description": "Schreibe eine Rede auf deutsch, welche für den Deutschen Bundestag geignet ist, die der Angabe der minimum Wörter entspricht und den tonalen parametern",
+              "description": "Schreibe eine Rede auf deutsch, welche für den Deutschen Bundestag geeignet ist, die der Angabe der minimum Wörter entspricht und den tonalen parametern",
               "parameters": {
                 "type": "object",
                 "properties": {
