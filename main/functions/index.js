@@ -53,7 +53,7 @@ app.post('/getChatResponse', async (req, res) => {
         max_tokens: 1000,
         
         
-        functions: [
+        /*functions: [
           {
               "name": "write-speech-in-german",
               "description": "Schreibe eine Rede auf deutsch, welche für den Deutschen Bundestag geeignet ist, die der Angabe der minimum Wörter entspricht und den tonalen parametern",
@@ -68,7 +68,7 @@ app.post('/getChatResponse', async (req, res) => {
                 "required": ["language"]
               }
           }
-        ],
+        ],*/
       });
 
       if (response.data && response.data.choices && response.data.choices.length > 0) {
