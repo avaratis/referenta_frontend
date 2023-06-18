@@ -49,7 +49,10 @@ app.post('/getChatResponse', async (req, res) => {
             role: 'user',
             content: prompt,
           }
-        ],/*
+        ],
+        max_tokens: 4000
+        
+        /*
         functions: [
           {
               "name": "write-speech-in-german",
