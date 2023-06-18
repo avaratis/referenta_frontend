@@ -41,18 +41,18 @@ app.post('/getChatResponse', async (req, res) => {
   let totalTokensGenerated = 0;
 
   try {
-    while (totalTokensGenerated < totalTokensNeeded) {
+    //while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createChatCompletion({
-        model: 'gpt-3.5-turbo-16k',
+        model: 'gpt-3.5-turbo-0613',
         messages: [
           {
             role: 'user',
             content: prompt,
           }
         ],
-        max_tokens: 8000
+        max_tokens: 8000,
         
-        /*
+        
         functions: [
           {
               "name": "write-speech-in-german",
@@ -68,7 +68,7 @@ app.post('/getChatResponse', async (req, res) => {
                 "required": ["language"]
               }
           }
-        ],*/
+        ],
       });
 
       if (response.data && response.data.choices && response.data.choices.length > 0) {
@@ -79,7 +79,7 @@ app.post('/getChatResponse', async (req, res) => {
       } else {
         throw new Error('Invalid response received from OpenAI API');
       }
-    }
+    //}
 
     res.send(fullResponse);
   } catch (error) {
