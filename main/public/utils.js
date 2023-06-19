@@ -1,9 +1,5 @@
-
-
-
 const dropzone = document.getElementById('dropzone');
 const pdfjsLib = window.pdfjsLib;
-
 
 // Prevent default behavior for drag and drop events
 dropzone.addEventListener('dragenter', (e) => {
@@ -42,17 +38,27 @@ dropzone.addEventListener('drop', (e) => {
 
     // Parse the PDF
     pdfjsLib.getDocument(typedarray).promise.then(function(pdf) {
-      // Get the first page
-      pdf.getPage(1).then(function(page) {
-        // Extract the text content
-        page.getTextContent().then(function(textContent) {
-          // Log the text content to the console
-          console.log(textContent.items.map(item => item.str).join(' '));
-        }).catch(function(error) {
-          console.error('Error extracting text content:', error);
+      // Get the number of pages
+      let numPages = pdf.numPages;
+
+      // Function to get text from a page
+      function getPageText(pageNum) {
+        return pdf.getPage(pageNum).then(function(page) {
+          return page.getTextContent().then(function(textContent) {
+            return textContent.items.map(item => item.str).join(' ');
+          });
         });
-      }).catch(function(error) {
-        console.error('Error getting page:', error);
+      }
+
+      // Generate an array of promises to get the text of each page
+      let pagePromises = [];
+      for (let i = 1; i <= numPages; i++) {
+        pagePromises.push(getPageText(i));
+      }
+
+      // Wait for all pages and log the text content to the console
+      Promise.all(pagePromises).then(function(pagesText) {
+        console.log(pagesText.join('\n'));
       });
     }).catch(function(error) {
       console.error('Error parsing PDF:', error);
