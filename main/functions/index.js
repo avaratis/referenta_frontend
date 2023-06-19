@@ -54,7 +54,7 @@ app.post('/getChatResponse', async (req, res) => {
         temperature: 0,
 
 
-        functions: [
+        /*functions: [
           {
               "name": "write-speech-in-german",
               "description": "Schreibe eine Rede auf deutsch, welche für den Deutschen Bundestag geeignet ist, die der Angabe der minimum Wörter entspricht und den tonalen parametern",
@@ -70,7 +70,8 @@ app.post('/getChatResponse', async (req, res) => {
               }
           }
         ],
-        function_call: 'auto',
+        function_call: 'auto',*/
+        
       });
       /*
       if (response.data && response.data.choices && response.data.choices.length > 0) {
