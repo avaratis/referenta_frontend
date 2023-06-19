@@ -41,7 +41,7 @@ app.post('/getChatResponse', async (req, res) => {
   let totalTokensGenerated = 0;
 
   try {
-    //while (totalTokensGenerated < totalTokensNeeded) {
+    while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createChatCompletion({
         model: 'gpt-3.5-turbo-0613',
         messages: [
@@ -51,7 +51,6 @@ app.post('/getChatResponse', async (req, res) => {
           }
         ],
         
-        temperature: 0,
 
 
         /*functions: [
@@ -71,9 +70,9 @@ app.post('/getChatResponse', async (req, res) => {
           }
         ],
         function_call: 'auto',*/
-        
+
       });
-      /*
+      
       if (response.data && response.data.choices && response.data.choices.length > 0) {
         const botReply = response.data.choices[0].message.content.trim();
         fullResponse += botReply;
@@ -81,8 +80,8 @@ app.post('/getChatResponse', async (req, res) => {
         prompt = "Original Prompt: " + prompt + "Alraedy generated text: " + botReply;
       } else {
         throw new Error('Invalid response received from OpenAI API');
-      }*/
-    //}
+      }
+    }
 
     res.send(fullResponse);
   } catch (error) {
