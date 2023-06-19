@@ -1,3 +1,5 @@
+window.parsedPdf = "";
+
 function countWordsLetters(text) {
     const words = text.split(' ');
   
@@ -80,7 +82,7 @@ function countWordsLetters(text) {
                       'Content-Type': 'application/json'
                   },
                   body: JSON.stringify({
-                      prompt: "Task Speech: " + "Speaker: " + inputData.redner + " Topic " + inputData.oTone + " Language German " + "Maximum amount of words: " +  calculateWordsSpoken(inputData.length, wordsPerMinute) + " Position: " + (inputData.dafür == true ? " for that position " : " against that position "),
+                      prompt: "Task Speech: " + "Speaker: " + inputData.redner + " Topic " + inputData.oTone + " Language German " + "Maximum amount of words: " +  calculateWordsSpoken(inputData.length, wordsPerMinute) + " Position: " + (inputData.dafür == true ? " for that position " : " against that position " + "PDF input to respond to: " + parsedPdf),
                       //maxTokens: calculateWordsSpoken(inputData.length, wordsPerMinute),
                       totalTokensNeeded: calculateWordsSpoken(inputData.length, wordsPerMinute)
                   })

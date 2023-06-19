@@ -1,5 +1,6 @@
 const dropzone = document.getElementById('dropzone');
 const pdfjsLib = window.pdfjsLib;
+let parsedPdf;
 
 // Prevent default behavior for drag and drop events
 dropzone.addEventListener('dragenter', (e) => {
@@ -58,7 +59,10 @@ dropzone.addEventListener('drop', (e) => {
 
       // Wait for all pages and log the text content to the console
       Promise.all(pagePromises).then(function(pagesText) {
-        console.log(pagesText.join('\n'));
+        //console.log(pagesText.join('\n'));
+        parsedPdf = pagesText.join('\n');
+        console.log(parsedPdf);
+        window.parsedPdf = parsedPdf;
       });
     }).catch(function(error) {
       console.error('Error parsing PDF:', error);
