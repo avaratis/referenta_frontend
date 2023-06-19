@@ -76,3 +76,24 @@ const inputData = {
 
 return inputData;
 }
+
+dropzone.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
+  
+    // Retrieve the dropped file
+    const file = e.dataTransfer.files[0];
+  
+    // Perform validation if needed (e.g., file type, size)
+    if (file.type !== 'application/pdf') {
+      console.error('File is not a PDF');
+      return;
+    }
+  
+    // Change the inner HTML of the dropzone
+    dropzone.innerHTML = `
+      <i class="far fa-file-pdf"></i>
+      <p>Uploaded: ${file.name}</p>
+    `;
+  
+  });

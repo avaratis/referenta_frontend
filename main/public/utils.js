@@ -36,7 +36,7 @@ dropzone.addEventListener('drop', (e) => {
   // Define the event handler for the load event
   reader.onload = function(event) {
     let typedarray = new Uint8Array(this.result);
-
+    dropzone.classList.add('uploaded');
     // Parse the PDF
     pdfjsLib.getDocument(typedarray).promise.then(function(pdf) {
       // Get the number of pages

@@ -204,3 +204,13 @@ cursor: pointer;
 .side-container {
   margin-top: 5.7%; /* Adds space to the left outside the new container */
 }
+
+.dropzone.uploaded {
+  animation: uploaded 1s;
+}
+
+@keyframes uploaded {
+  0% { background-color: white; }
+  50% { background-color: lightgreen; }
+  100% { background-color: white; }
+}
