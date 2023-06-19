@@ -1,3 +1,6 @@
+import * as pdfjsLib from 'pdfjs-dist/build/pdf';
+
+
 const dropzone = document.getElementById('dropzone');
 const pdfjsLib = window['pdfjs-dist/build/pdf'];
 
