@@ -211,6 +211,6 @@ cursor: pointer;
 
 @keyframes uploaded {
   0% { background-color: white; }
-  50% { background-color: lightgreen; }
+  50% { background-color: #045034; }
   100% { background-color: white; }
 }

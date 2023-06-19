@@ -93,7 +93,7 @@ dropzone.addEventListener('drop', (e) => {
     // Change the inner HTML of the dropzone
     dropzone.innerHTML = `
       <i class="far fa-file-pdf"></i>
-      <p>Uploaded: ${file.name}</p>
+      <p>Hochgeladen: ${file.name}</p>
     `;
   
   });
