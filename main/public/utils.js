@@ -61,7 +61,6 @@ dropzone.addEventListener('drop', (e) => {
       Promise.all(pagePromises).then(function(pagesText) {
         //console.log(pagesText.join('\n'));
         parsedPdf = pagesText.join('\n');
-        console.log(parsedPdf);
         window.parsedPdf = parsedPdf;
       });
     }).catch(function(error) {
