@@ -36,6 +36,7 @@ app.post('/getChatResponse', async (req, res) => {
   let prompt = req.body.prompt;
   const maxTokens = req.body.maxTokens;
   const totalTokensNeeded = req.body.totalTokensNeeded;  // the total number of tokens you want to generate
+  let attachedPdf = req.body.attachedPdf;
 
   let fullResponse = '';
   let totalTokensGenerated = 0;
@@ -47,7 +48,7 @@ app.post('/getChatResponse', async (req, res) => {
         messages: [
           {
             role: 'user',
-            content: prompt,
+            content: prompt + "Input consideration: " + attachedPdf,
           }
         ],
         
