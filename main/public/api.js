@@ -119,6 +119,14 @@ function countWordsLetters(text) {
                       chatReply.style.display = 'none';
                       chatReply.innerHTML = `${botReply}`;
                       chatTabs.insertBefore(chatReply, tabButton.nextSibling);
+
+                                            // Create a new chat reply div and hide it initially
+
+                      chatReply.className = 'p-2 mt-2';
+                      chatReply.id = chatTabs2;
+                      chatReply.style.display = 'none';
+                      chatReply.innerHTML = `${botReply}`;
+                      chatTabs.insertBefore(chatReply, tabButton.nextSibling);
                 
                       // Show the newly created chat reply by default
                       showChatReply(tabId);
