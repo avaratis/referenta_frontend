@@ -51,7 +51,7 @@ function countWordsLetters(text) {
   
   const inputData = compileInputData();
   
-  
+  console.log(parsedPdf);
       const chatTabs = document.getElementById('chatTabs');
       const chatbox = document.getElementById('chatBox');
   
@@ -82,7 +82,7 @@ function countWordsLetters(text) {
                       'Content-Type': 'application/json'
                   },
                   body: JSON.stringify({
-                      prompt: "Task Speech: " + "Speaker: " + inputData.redner + " Topic " + inputData.oTone + " Language German " + "Maximum amount of words: " +  calculateWordsSpoken(inputData.length, wordsPerMinute) + " Position: " + (inputData.dafür == true ? " for that position " : " against that position " + "PDF input to respond to: " + parsedPdf),
+                      prompt: "Task Speech: " + "Speaker: " + inputData.redner + " Topic " + inputData.oTone + " Language: German " + "Maximum amount of words: " +  calculateWordsSpoken(inputData.length, wordsPerMinute) + " Position: " + (inputData.dafür == true ? " for that position " : " against that position " + "PDF input to respond to: " + parsedPdf),
                       //maxTokens: calculateWordsSpoken(inputData.length, wordsPerMinute),
                       totalTokensNeeded: calculateWordsSpoken(inputData.length, wordsPerMinute)
                   })
