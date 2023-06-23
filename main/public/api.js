@@ -48,11 +48,6 @@ function countWordsLetters(text) {
   async function submitChat() {
     showLoadingScreen();
 
-    document.getElementById('chatTab').style.display = 'flex'; // Show the chat tabs
-    chatTabs.forEach(tab => {
-        document.getElementById(tab.box).style.display = 'block'; // Show each chat box
-    });
-
     const inputData = compileInputData();
 
     const chatTabs = [
@@ -60,6 +55,11 @@ function countWordsLetters(text) {
         { tab: 'chat-tab-2', box: 'chatTabs2' },
         { tab: 'chat-tab-3', box: 'chatTabs3' }
     ];
+
+    document.getElementById('chatTab').style.display = 'flex'; // Show the chat tabs
+    chatTabs.forEach(tab => {
+        document.getElementById(tab.box).style.display = 'block'; // Show each chat box
+    });
 
     let selectedZweck = document.querySelector('#parliamentaryCheckbox').checked ? 'Parlamentarisch' : 'Andere';
     let selectedVotum = document.querySelector('#dafürCheckbox').checked ? 'dafür' : (document.querySelector('#dagegenCheckbox').checked ? 'dagegen' : 'enthaltung');
