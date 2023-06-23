@@ -79,7 +79,7 @@ app.post('/getChatResponse', async (req, res) => {
         const botReply = response.data.choices[0].message.content.trim();
         fullResponse += botReply;
         totalTokensGenerated += countTokens(botReply);  // you will need to implement the countTokens function
-        prompt = "Task: Continue Speech -- Original Prompt: " + prompt + "Already generated text: " + botReply;
+        prompt = "Task: Continue Speech -- " + "Already generated text: " + botReply;
       } else {
         throw new Error('Invalid response received from OpenAI API');
       }
