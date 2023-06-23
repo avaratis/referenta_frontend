@@ -42,7 +42,7 @@ app.post('/getChatResponse', async (req, res) => {
   let totalTokensGenerated = 0;
 
   try {
-    //while (totalTokensGenerated < totalTokensNeeded) {
+    while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createChatCompletion({
         model: 'gpt-3.5-turbo-0613',
         messages: [
@@ -83,7 +83,7 @@ app.post('/getChatResponse', async (req, res) => {
       } else {
         throw new Error('Invalid response received from OpenAI API');
       }
-    //}
+    }
 
     res.send(fullResponse);
   } catch (error) {
