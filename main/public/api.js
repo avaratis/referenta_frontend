@@ -50,7 +50,7 @@ function countWordsLetters(text) {
 
     const inputData = compileInputData();
 
-    const chatBoxes = [
+    const chatTabs = [
         document.getElementById('chatTabs'),
         document.getElementById('chatTabs2'),
         document.getElementById('chatTabs3')
@@ -68,10 +68,6 @@ function countWordsLetters(text) {
     document.getElementById('selectedLänge').innerText = selectedLänge + ' Minuten';
     document.getElementById('selectedRedner').innerText = selectedRedner;
     document.getElementById('selectedOTone').innerText = selectedOTone;
-
-    // Unhide the tabs
-    document.getElementById('chatTab').style.display = 'flex';
-    chatBoxes.forEach(chatbox => chatbox.style.display = 'block'); // Show the chat boxes
 
     const requests = Array(3).fill().map(() => 
         fetch('https://us-central1-referenta-30a27.cloudfunctions.net/api/getChatResponse', {
@@ -100,13 +96,11 @@ function countWordsLetters(text) {
             document.getElementById('letterCount').innerText = letterCount;
             document.getElementById('mostUsedWords').innerText = topUsedWordsStr;
 
-            // Create a new chat reply div and hide it initially
+            // Add the bot reply to the appropriate chat tab
             const chatReply = document.createElement('div');
             chatReply.className = 'p-2 mt-2';
-            chatReply.id = `tab-${Date.now()}`;
-            chatReply.style.display = 'none';
-            chatReply.innerHTML = `${botReply}`;
-            chatBoxes[index].appendChild(chatReply);
+            chatReply.innerHTML = botReply;
+            chatTabs[index].appendChild(chatReply);
         });
     } catch (error) {
         console.error('Error:', error);
@@ -123,6 +117,7 @@ let wordsPerMinute = 130; // Average speech rate
 function calculateWordsSpoken(minutes, wordsPerMinute) {
     return minutes * wordsPerMinute;
 }
+
 
 
 
