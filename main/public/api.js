@@ -73,44 +73,40 @@ function countWordsLetters(text) {
     document.getElementById('chatTab').style.display = 'flex';
     chatBoxes.forEach(chatbox => chatbox.style.display = 'block'); // Show the chat boxes
 
-    const requests = Array(3).fill(fetch('https://us-central1-referenta-30a27.cloudfunctions.net/api/getChatResponse', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            prompt: "Task Speech: " + "Speaker: " + inputData.redner + " Topic " + inputData.oTone + " Language: German " + "Maximum amount of words: " +  calculateWordsSpoken(inputData.length, wordsPerMinute) + " Position: " + (inputData.dafür == true ? " for that position " : " against that position "),
-            totalTokensNeeded: calculateWordsSpoken(inputData.length, wordsPerMinute),
-            attachedPdf: parsedPdf
+    const requests = Array(3).fill().map(() => 
+        fetch('https://us-central1-referenta-30a27.cloudfunctions.net/api/getChatResponse', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                prompt: "Task Speech: " + "Speaker: " + inputData.redner + " Topic " + inputData.oTone + " Language: German " + "Maximum amount of words: " +  calculateWordsSpoken(inputData.length, wordsPerMinute) + " Position: " + (inputData.dafür == true ? " for that position " : " against that position "),
+                totalTokensNeeded: calculateWordsSpoken(inputData.length, wordsPerMinute),
+                attachedPdf: parsedPdf
+            })
         })
-    }));
+    );
 
     try {
-        const responses = await Promise.all(requests);
+        const responses = await Promise.all(requests.map(req => req.then(res => res.text())));
 
-        responses.forEach(async (response, index) => {
-            if (response.ok) {
-                const botReply = await response.text();
+        responses.forEach(async (botReply, index) => {
+            let wordCount = countWordsLetters(botReply).wordCount;
+            let letterCount = countWordsLetters(botReply).letterCount;
+            let topUsedWords  = mostUsedWords(botReply, 5);
+            let topUsedWordsStr = topUsedWords.map(obj => `${obj.word}: ${obj.count}`).join(', ');
 
-                let wordCount = countWordsLetters(botReply).wordCount;
-                let letterCount = countWordsLetters(botReply).letterCount;
-                let topUsedWords  = mostUsedWords(botReply, 5);
-                let topUsedWordsStr = topUsedWords.map(obj => `${obj.word}: ${obj.count}`).join(', ');
+            document.getElementById('wordCount').innerText = wordCount;
+            document.getElementById('letterCount').innerText = letterCount;
+            document.getElementById('mostUsedWords').innerText = topUsedWordsStr;
 
-                document.getElementById('wordCount').innerText = wordCount;
-                document.getElementById('letterCount').innerText = letterCount;
-                document.getElementById('mostUsedWords').innerText = topUsedWordsStr;
-
-                // Create a new chat reply div and hide it initially
-                const chatReply = document.createElement('div');
-                chatReply.className = 'p-2 mt-2';
-                chatReply.id = `tab-${Date.now()}`;
-                chatReply.style.display = 'none';
-                chatReply.innerHTML = `${botReply}`;
-                chatBoxes[index].appendChild(chatReply);
-            } else {
-                console.error('Error:', response.statusText);
-            }
+            // Create a new chat reply div and hide it initially
+            const chatReply = document.createElement('div');
+            chatReply.className = 'p-2 mt-2';
+            chatReply.id = `tab-${Date.now()}`;
+            chatReply.style.display = 'none';
+            chatReply.innerHTML = `${botReply}`;
+            chatBoxes[index].appendChild(chatReply);
         });
     } catch (error) {
         console.error('Error:', error);
@@ -121,12 +117,12 @@ function countWordsLetters(text) {
         loadingScreen.remove();
     }
 }
-  
-  let wordsPerMinute = 130; // Average speech rate
-  
-  function calculateWordsSpoken(minutes, wordsPerMinute) {
-      return minutes * wordsPerMinute;
-  }
+
+let wordsPerMinute = 130; // Average speech rate
+
+function calculateWordsSpoken(minutes, wordsPerMinute) {
+    return minutes * wordsPerMinute;
+}
 
 
 
