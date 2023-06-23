@@ -51,9 +51,9 @@ function countWordsLetters(text) {
     const inputData = compileInputData();
 
     const chatTabs = [
-        document.getElementById('chatTabs'),
-        document.getElementById('chatTabs2'),
-        document.getElementById('chatTabs3')
+        { tab: 'chat-tab-1', box: 'chatTabs' },
+        { tab: 'chat-tab-2', box: 'chatTabs2' },
+        { tab: 'chat-tab-3', box: 'chatTabs3' }
     ];
 
     let selectedZweck = document.querySelector('#parliamentaryCheckbox').checked ? 'Parlamentarisch' : 'Andere';
@@ -97,10 +97,17 @@ function countWordsLetters(text) {
             document.getElementById('mostUsedWords').innerText = topUsedWordsStr;
 
             // Add the bot reply to the appropriate chat tab
+            const chatBox = document.getElementById(chatTabs[index].box);
             const chatReply = document.createElement('div');
             chatReply.className = 'p-2 mt-2';
             chatReply.innerHTML = botReply;
-            chatTabs[index].appendChild(chatReply);
+            chatBox.appendChild(chatReply);
+        });
+
+        // After all requests are complete, unhide the tabs and boxes
+        document.getElementById('chatTab').style.display = 'flex'; // Show the chat tabs
+        chatTabs.forEach(tab => {
+            document.getElementById(tab.box).style.display = 'block'; // Show each chat box
         });
     } catch (error) {
         console.error('Error:', error);
@@ -112,12 +119,12 @@ function countWordsLetters(text) {
     }
 }
 
+
 let wordsPerMinute = 130; // Average speech rate
 
 function calculateWordsSpoken(minutes, wordsPerMinute) {
     return minutes * wordsPerMinute;
 }
-
 
 
 
