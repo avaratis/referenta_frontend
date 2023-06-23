@@ -48,6 +48,11 @@ function countWordsLetters(text) {
   async function submitChat() {
     showLoadingScreen();
 
+    document.getElementById('chatTab').style.display = 'flex'; // Show the chat tabs
+    chatTabs.forEach(tab => {
+        document.getElementById(tab.box).style.display = 'block'; // Show each chat box
+    });
+
     const inputData = compileInputData();
 
     const chatTabs = [
@@ -105,10 +110,7 @@ function countWordsLetters(text) {
         });
 
         // After all requests are complete, unhide the tabs and boxes
-        document.getElementById('chatTab').style.display = 'flex'; // Show the chat tabs
-        chatTabs.forEach(tab => {
-            document.getElementById(tab.box).style.display = 'block'; // Show each chat box
-        });
+
     } catch (error) {
         console.error('Error:', error);
     }
