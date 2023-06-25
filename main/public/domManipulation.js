@@ -12,16 +12,13 @@ function showLoadingScreen() {
   }
 
   function hideLoadingScreen() {
-    const chatbox = document.getElementById('chatTabs');
-    const loadingOverlay = chatbox.querySelector('.loading-overlay');
-    const loadingScreen = document.querySelector('.loading-screen');
-
-    if (loadingScreen) {
-      chatbox.removeChild(loadingScreen);
-    }
-    if (loadingOverlay) {
-      loadingOverlay.remove();
-  }
+    ['chatTabs', 'chatTabs2', 'chatTabs3'].forEach((chatboxId) => {
+      const chatbox = document.getElementById(chatboxId);
+      const loadingOverlay = chatbox.querySelector('.loading-overlay');
+      if (loadingOverlay) {
+        chatbox.removeChild(loadingOverlay);
+      }
+    });
   }
 
   function showChatReply(tabId) {

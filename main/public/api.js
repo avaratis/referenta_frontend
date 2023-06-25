@@ -113,15 +113,13 @@ function countWordsLetters(text) {
 
     } catch (error) {
         console.error('Error:', error);
-        hideLoadingScreen()
     }
 
     hideLoadingScreen()
-
 }
 
 
-let wordsPerMinute = 100; // Average speech rate
+let wordsPerMinute = 130; // Average speech rate
 
 function calculateWordsSpoken(minutes, wordsPerMinute) {
     return minutes * wordsPerMinute;
