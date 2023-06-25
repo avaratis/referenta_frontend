@@ -4,10 +4,16 @@ function showLoadingScreen() {
     const rect = chatbox.getBoundingClientRect();
     const loadingScreen = document.createElement('div');
     
+    loadingScreen.style.position = 'fixed';
     loadingScreen.style.top = `${rect.top}px`;
     loadingScreen.style.left = `${rect.left}px`;
     loadingScreen.style.width = `${rect.width}px`;
     loadingScreen.style.height = `${rect.height}px`;
+    loadingScreen.style.backgroundColor = 'rgba(211, 211, 211, 0.5)';
+    loadingScreen.style.zIndex = 9999;
+    loadingScreen.style.display = 'flex';
+    loadingScreen.style.alignItems = 'center';
+    loadingScreen.style.justifyContent = 'center';
     
     loadingScreen.innerHTML = '<div class="loading-screen"><div class="loading-spinner"></div></div>';
     loadingScreen.className = 'loading-overlay';
@@ -15,6 +21,7 @@ function showLoadingScreen() {
     document.body.appendChild(loadingScreen);
   });
 }
+
 
 
 function hideLoadingScreen() {
