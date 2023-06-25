@@ -1,28 +1,29 @@
 function showLoadingScreen() {
   ['chatTabs', 'chatTabs2', 'chatTabs3'].forEach((chatboxId) => {
     const chatbox = document.getElementById(chatboxId);
-    chatbox.style.overflow = 'hidden';  // disable scrolling
-    
+    const rect = chatbox.getBoundingClientRect();
     const loadingScreen = document.createElement('div');
+    
+    loadingScreen.style.top = `${rect.top}px`;
+    loadingScreen.style.left = `${rect.left}px`;
+    loadingScreen.style.width = `${rect.width}px`;
+    loadingScreen.style.height = `${rect.height}px`;
+    
     loadingScreen.innerHTML = '<div class="loading-screen"><div class="loading-spinner"></div></div>';
-    loadingScreen.className = 'loading-overlay';  // assign the new class
+    loadingScreen.className = 'loading-overlay';
   
-    // Display the loading screen
-    chatbox.appendChild(loadingScreen);
+    document.body.appendChild(loadingScreen);
   });
 }
 
+
 function hideLoadingScreen() {
-  ['chatTabs', 'chatTabs2', 'chatTabs3'].forEach((chatboxId) => {
-    const chatbox = document.getElementById(chatboxId);
-    const loadingOverlay = chatbox.querySelector('.loading-overlay');
-    if (loadingOverlay) {
-      chatbox.removeChild(loadingOverlay);
-    }
-    
-    chatbox.style.overflow = 'auto';  // enable scrolling
+  const loadingOverlays = document.querySelectorAll('.loading-overlay');
+  loadingOverlays.forEach((loadingOverlay) => {
+    document.body.removeChild(loadingOverlay);
   });
 }
+
 
 
   function showChatReply(tabId) {
