@@ -86,6 +86,10 @@ body {
     display: none;
 }
 
+#chatTabs2, #chatTabs3 {
+  position: relative;
+}
+
 #chatTab {
   display: none;
 }

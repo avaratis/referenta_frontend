@@ -1,6 +1,8 @@
 function showLoadingScreen() {
   ['chatTabs', 'chatTabs2', 'chatTabs3'].forEach((chatboxId) => {
     const chatbox = document.getElementById(chatboxId);
+    chatbox.style.overflow = 'hidden';  // disable scrolling
+    
     const loadingScreen = document.createElement('div');
     loadingScreen.innerHTML = '<div class="loading-screen"><div class="loading-spinner"></div></div>';
     loadingScreen.className = 'loading-overlay';  // assign the new class
@@ -10,16 +12,18 @@ function showLoadingScreen() {
   });
 }
 
+function hideLoadingScreen() {
+  ['chatTabs', 'chatTabs2', 'chatTabs3'].forEach((chatboxId) => {
+    const chatbox = document.getElementById(chatboxId);
+    const loadingOverlay = chatbox.querySelector('.loading-overlay');
+    if (loadingOverlay) {
+      chatbox.removeChild(loadingOverlay);
+    }
+    
+    chatbox.style.overflow = 'auto';  // enable scrolling
+  });
+}
 
-  function hideLoadingScreen() {
-    ['chatTabs', 'chatTabs2', 'chatTabs3'].forEach((chatboxId) => {
-      const chatbox = document.getElementById(chatboxId);
-      const loadingOverlay = chatbox.querySelector('.loading-overlay');
-      if (loadingOverlay) {
-        chatbox.removeChild(loadingOverlay);
-      }
-    });
-  }
 
   function showChatReply(tabId) {
     // Hide all chat replies
