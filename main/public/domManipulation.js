@@ -1,15 +1,15 @@
 function showLoadingScreen() {
-  const chatbox = document.getElementById('chatTabs');
-  const loadingScreen = document.createElement('div');
-  loadingScreen.innerHTML = '<div class="loading-screen"><div class="loading-spinner"></div></div>';
-  loadingScreen.className = 'loading-overlay';  // assign the new class
+  ['chatTabs', 'chatTabs2', 'chatTabs3'].forEach((chatboxId) => {
+    const chatbox = document.getElementById(chatboxId);
+    const loadingScreen = document.createElement('div');
+    loadingScreen.innerHTML = '<div class="loading-screen"><div class="loading-spinner"></div></div>';
+    loadingScreen.className = 'loading-overlay';  // assign the new class
   
     // Display the loading screen
     chatbox.appendChild(loadingScreen);
-  
-    // Scroll to the bottom of the chatbox
-    //chatbox.scrollTop = chatbox.scrollHeight;
-  }
+  });
+}
+
 
   function hideLoadingScreen() {
     ['chatTabs', 'chatTabs2', 'chatTabs3'].forEach((chatboxId) => {
