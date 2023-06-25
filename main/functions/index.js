@@ -18,7 +18,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { Configuration, OpenAIApi } = require("openai");
-const guidance = require("guidance")
 
 const app = express();
 app.use(cors({ origin: 'https://referenta-30a27.web.app' }));
@@ -52,7 +51,7 @@ app.post('/getChatResponse', async (req, res) => {
             content: prompt + "Input consideration: " + attachedPdf,
           }
         ],
-        max_tokens: 1024,
+        max_tokens: 1024*8,
         
 
 
