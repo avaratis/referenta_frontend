@@ -24,7 +24,7 @@ body {
   .header-bar {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;;
     background-color: #045034;
     color: #ffffff !important;
     padding: 10px;
@@ -40,6 +40,22 @@ body {
   }
   .header-bar img {
   margin-right: 10px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.user-icon {
+  width: 32px;  /* or the size you want */
+  height: 32px;  /* or the size you want */
+}
+
+.username {
+  /* styles for the username, for example: */
+  font-size: 16px;
+  color: #000;
 }
 
 .form-check-label {
