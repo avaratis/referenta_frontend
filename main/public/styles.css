@@ -28,13 +28,14 @@ body {
   background-color: #045034;
   color: #ffffff !important;
   padding: 10px;
+  text-align: center;
 }
 
 .header-center {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-right: 50px; /* add more padding to the right */
+  flex-grow: 1; /* This makes the div take all the remaining space */
 }
 
 .header-bar h1 {
@@ -47,7 +48,7 @@ body {
 .header-right {
   display: flex;
   align-items: center;
-  margin-left: auto; /* add this to align it to the right of .header-center */
+  padding-right: 250px; /* Adjust the padding value as per your requirement */
 }
 
 .user-icon {
@@ -64,6 +65,20 @@ body {
 margin-right: 10px;
 }
 
+
+.user-icon {
+  width: 32px;  /* or the size you want */
+  height: 32px;  /* or the size you want */
+}
+
+.username {
+  font-size: 16px;
+  color: #ffffff; /* set username to white */
+}
+
+.header-bar img {
+margin-right: 10px;
+}
 
 
 .form-check-label {
@@ -128,16 +143,20 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-height:50px;
+
 background-color: #f8f9fa;
 border: 2px solid #045034;
 border-radius: 8px;
 font-size: 24px;
 color: #343a40;
 cursor: pointer;
+padding: 20px;
+text-align: center; /* To center text alignment */
+width: 100%;
 }
 
 .dropzone i {
+text-align: center;
 font-size: 48px;
 margin-bottom: 16px;
 }
