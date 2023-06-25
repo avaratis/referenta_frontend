@@ -1,45 +1,49 @@
 /* styles.css */
 
-/* Set the background color to dark green */
+
+/* Set the background color to white */
 body {
-    background-color: #ffffff;
-  }
-  
-  /* Set the text color to white */
-  body, h1, h2, h3, p, input, select, option, label {
-    color: #045034;
-  }
-  
-  .logo {
-    width: 100px; /* Adjust the width as per your logo size */
-    height: 100px; /* Adjust the height as per your logo size */
-    margin-right: 10px; /* Adjust the margin as per your desired spacing */
-  }
+  background-color: #ffffff;
+}
 
-  /* Set the font family to Montserrat */
-  body {
-    font-family: "Montserrat" sans-serif;
-  }
+/* Set the text color to dark green */
+body, h1, h2, h3, p, input, select, option, label {
+  color: #045034;
+}
 
-  .header-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;;
-    background-color: #045034;
-    color: #ffffff !important;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  .header-bar h1 {
-    margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    color: #ffffff !important;
-    text-align: center;
-  }
-  .header-bar img {
-  margin-right: 10px;
+.logo {
+  width: 100px; /* Adjust the width as per your logo size */
+  height: 100px; /* Adjust the height as per your logo size */
+  margin-right: 10px; /* Adjust the margin as per your desired spacing */
+}
+
+/* Set the font family to Montserrat */
+body {
+  font-family: "Montserrat", sans-serif;
+}
+
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #045034;
+  color: #ffffff !important;
+  padding: 10px;
+  text-align: center;
+}
+
+.header-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1; /* This makes the div take all the remaining space */
+}
+
+.header-bar h1 {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: #ffffff !important;
 }
 
 .header-right {
@@ -53,10 +57,14 @@ body {
 }
 
 .username {
-  /* styles for the username, for example: */
   font-size: 16px;
-  color: #000;
+  color: #ffffff; /* set username to white */
 }
+
+.header-bar img {
+margin-right: 10px;
+}
+
 
 .form-check-label {
     margin-left: 10px;
