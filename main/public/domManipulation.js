@@ -11,6 +11,19 @@ function showLoadingScreen() {
     //chatbox.scrollTop = chatbox.scrollHeight;
   }
 
+  function hideLoadingScreen() {
+    const chatbox = document.getElementById('chatTabs');
+    const loadingOverlay = chatbox.querySelector('.loading-overlay');
+    const loadingScreen = document.querySelector('.loading-screen');
+
+    if (loadingScreen) {
+      chatbox.removeChild(loadingScreen);
+    }
+    if (loadingOverlay) {
+      loadingOverlay.remove();
+  }
+  }
+
   function showChatReply(tabId) {
     // Hide all chat replies
     const chatReplies = document.querySelectorAll('.chat-reply');

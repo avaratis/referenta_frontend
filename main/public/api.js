@@ -113,12 +113,11 @@ function countWordsLetters(text) {
 
     } catch (error) {
         console.error('Error:', error);
+        hideLoadingScreen()
     }
 
-    const loadingScreen = document.querySelector('.loading-screen');
-    if (loadingScreen) {
-        loadingScreen.remove();
-    }
+    hideLoadingScreen()
+
 }
 
 
