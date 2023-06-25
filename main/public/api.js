@@ -122,7 +122,7 @@ function countWordsLetters(text) {
 }
 
 
-let wordsPerMinute = 100; // Average speech rate
+let wordsPerMinute = 130; // Average speech rate
 
 function calculateWordsSpoken(minutes, wordsPerMinute) {
     return minutes * wordsPerMinute;
