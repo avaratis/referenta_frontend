@@ -48,7 +48,7 @@ body {
 .header-right {
   display: flex;
   align-items: center;
-  padding-right: 250px; /* Adjust the padding value as per your requirement */
+  padding-right: 60px; /* Adjust the padding value as per your requirement */
 }
 
 .user-icon {
@@ -107,6 +107,7 @@ margin-right: 10px;
 .custom-button {
     background-color: #045034;
     border-color: #045034;
+    margin-bottom: 120px;
   }
 
 .checkbox-container {
