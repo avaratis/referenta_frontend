@@ -28,14 +28,13 @@ body {
   background-color: #045034;
   color: #ffffff !important;
   padding: 10px;
-  text-align: center;
 }
 
 .header-center {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-grow: 1; /* This makes the div take all the remaining space */
+  padding-right: 50px; /* add more padding to the right */
 }
 
 .header-bar h1 {
@@ -48,7 +47,7 @@ body {
 .header-right {
   display: flex;
   align-items: center;
-  padding-right: 20px; /* Adjust the padding value as per your requirement */
+  margin-left: auto; /* add this to align it to the right of .header-center */
 }
 
 .user-icon {
@@ -65,20 +64,6 @@ body {
 margin-right: 10px;
 }
 
-
-.user-icon {
-  width: 32px;  /* or the size you want */
-  height: 32px;  /* or the size you want */
-}
-
-.username {
-  font-size: 16px;
-  color: #ffffff; /* set username to white */
-}
-
-.header-bar img {
-margin-right: 10px;
-}
 
 
 .form-check-label {
