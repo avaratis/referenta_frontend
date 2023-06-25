@@ -18,6 +18,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { Configuration, OpenAIApi } = require("openai");
+const guidance = require("guidance")
 
 const app = express();
 app.use(cors({ origin: 'https://referenta-30a27.web.app' }));
@@ -44,7 +45,7 @@ app.post('/getChatResponse', async (req, res) => {
   try {
     while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createChatCompletion({
-        model: 'gpt-3.5-turbo-0613',
+        model: 'gpt-3.5-turbo-16k',
         messages: [
           {
             role: 'user',
@@ -78,7 +79,7 @@ app.post('/getChatResponse', async (req, res) => {
       if (response.data && response.data.choices && response.data.choices.length > 0) {
         const botReply = response.data.choices[0].message.content.trim();
         fullResponse += botReply;
-        totalTokensGenerated += countTokens(botReply);  // you will need to implement the countTokens function
+        totalTokensGenerated += countTokens(botReply);  
         prompt = "Task: Continue Speech -- " + "Already generated text: " + botReply;
       } else {
         throw new Error('Invalid response received from OpenAI API');
