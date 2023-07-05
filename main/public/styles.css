@@ -91,35 +91,75 @@ margin-right: 10px;
     margin-right: 10px;
 }
 
+/* Your existing styles */
 .purpose-checkbox {
-    display: inline-block;
+  display: inline-block;
 }
 
-  /* Custom styles for checkboxes */
-  .form-check-input {
-    transform: scale(1.5); /* Increase the size of the checkboxes */
-  }
+.form-check-input {
+  transform: scale(1.5); 
+}
 
-  .form-check-input:checked {
-    background-color: #045034 !important; /* Change the background color of checked checkboxes to green */
-  }
+.form-check-input:checked {
+  background-color: #045034 !important; 
+}
 
 .custom-button {
-    background-color: #045034;
-    border-color: #045034;
-    margin-bottom: 120px;
-  }
+  background-color: #045034;
+  border-color: #045034;
+  margin-bottom: 120px;
+}
 
 .checkbox-container {
-    background-color: #f8f9fa;
-    border: 1px solid #045034;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 4px;
+  background-color: #f8f9fa;
+  border: 1px solid #045034;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
 }
+
 .checkbox-container label {
-    color: black;
-  }
+  color: black;
+}
+
+/* Add custom checkbox design */
+/* Hide the default checkbox */
+.custom-checkbox {
+display: none;
+}
+
+/* Create a custom checkbox */
+.custom-checkbox + label:before {
+content: '';
+display: inline-block;
+width: 20px;
+height: 20px;
+border: 2px solid #045034; 
+border-radius: 3px;
+margin-right: 10px;
+vertical-align: middle;
+}
+
+/* Customize the color of the checkbox when checked */
+.custom-checkbox:checked + label:before {
+  background-color: #045034; /* This is your checkbox color when checked */
+}
+
+/* Add a white checkmark when the checkbox is checked */
+.custom-checkbox:checked + label:after {
+  content: '\2713';
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  position: absolute;
+  left: 15px;
+  top: 2px; 
+}
+
+
+
+
+  
 
 #chatTabs {
     position: relative;
