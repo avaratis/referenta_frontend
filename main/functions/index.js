@@ -52,6 +52,7 @@ app.post('/getChatResponse', async (req, res) => {
           }
         ],
         max_tokens: 1024*8,
+        temperature: 0.2,
         
 
 
