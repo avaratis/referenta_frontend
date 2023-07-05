@@ -217,6 +217,33 @@
             <span class="text-muted">Current Build Version: referenta_0.1.2 from 28.06.2023</span>
         </div>
     </footer>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="myModalLabel"><strong>Disclaimer: ALPHA VERSION: </strong> referenta_0.1.2 from 06.07.2023 </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p><strong>Referenta</strong>, eine KI-basierte Anwendung zur Generierung von Reden, befindet sich derzeit in einer Alpha- und Demophase. Die Nutzung erfolgt auf eigenes Risiko.</p>
+              <p><strong>1. ALPHA- UND DEMOVERSION:</strong> Bitte beachten Sie, dass Referenta derzeit in einem Alpha- und Demostadium ist. Das bedeutet, dass die Anwendung kontinuierlich weiterentwickelt und verbessert wird und möglicherweise noch nicht alle Funktionen vollständig oder optimal funktionieren. Während dieser Phase können Fehler, Ausfälle und andere Probleme auftreten. Die Nutzung dieser Anwendung erfolgt auf eigenes Risiko.</p>
+              <p><strong>2. KEINE GEWÄHRLEISTUNG:</strong> Die Referenta-Anwendung wird "wie besehen" und ohne jegliche ausdrückliche oder stillschweigende Garantien bereitgestellt, einschließlich, aber nicht beschränkt auf, die stillschweigende Garantie der Marktgängigkeit, Eignung für einen bestimmten Zweck und Nichtverletzung.</p>
+              <p><strong>3. EINSCHRÄNKUNGEN:</strong> Obwohl die künstliche Intelligenz von Referenta darauf trainiert wurde, relevante und zusammenhängende Reden zu generieren, gibt es keine Garantie dafür, dass alle generierten Inhalte korrekt, vollständig, nützlich, rechtlich zulässig oder in irgendeiner Weise befriedigend sind. Die Benutzer tragen die volle Verantwortung für die Überprüfung, Modifizierung und den Einsatz der von Referenta generierten Reden in der Praxis.</p>
+              <p>Wir übernehmen keine Haftung für Schäden, die sich aus der Nutzung dieser Anwendung ergeben. Durch die Nutzung von Referenta stimmen Sie diesen Bedingungen zu.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Verstanden</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  
+
             
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -228,6 +255,11 @@
     <script src="eventHandlers.js"></script>
     <script src="api.js"></script>
 
+    <script>
+        $(document).ready(function(){
+            $('#myModal').modal('show');
+        });
+        </script>
 
 </body>
 

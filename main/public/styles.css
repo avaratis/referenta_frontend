@@ -135,6 +135,12 @@ margin-right: 10px;
 }
 
 
+.btn {
+  background-color: #045034 !important;
+  color: #ffffff !important; /* You might want to change the button text color so it contrasts with the button color */
+}
+
+
 
 .chatBox{
   display: none;
