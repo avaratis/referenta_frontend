@@ -10,6 +10,10 @@ body, h1, h2, h3, p, input, select, option, label {
   color: #045034;
 }
 
+
+
+/* -------------------------- HEADER*/
+
 .logo {
   width: 100px; /* Adjust the width as per your logo size */
   height: 100px; /* Adjust the height as per your logo size */
@@ -80,6 +84,9 @@ margin-right: 10px;
 margin-right: 10px;
 }
 
+
+
+/* -------------------------- CUSTOM FORM CHECKS*/
 
 .form-check-label {
     margin-left: 10px;
@@ -158,8 +165,7 @@ vertical-align: middle;
 
 
 
-
-  
+/* -------------------------- Chat window*/
 
 #chatTabs {
     position: relative;
@@ -174,17 +180,12 @@ vertical-align: middle;
   display: none;
 }
 
-
-.btn {
-  background-color: #045034 !important;
-  color: #ffffff !important; /* You might want to change the button text color so it contrasts with the button color */
-}
-
-
-
 .chatBox{
   display: none;
 }
+
+/* -------------------------- DROPZONE*/
+
 .dropzone {
 display: flex;
 flex-direction: column;
@@ -208,6 +209,19 @@ font-size: 48px;
 margin-bottom: 16px;
 }
 
+
+.dropzone.uploaded {
+  animation: uploaded 1s;
+}
+
+@keyframes uploaded {
+  0% { background-color: white; }
+  50% { background-color: lightgreen; }
+  100% { background-color: white; }
+}
+
+
+/* -------------------------- SLIDER*/
 
 /* CSS for the range slider */
 input[type="range"] {
@@ -238,6 +252,28 @@ background-color: #045034;
 cursor: pointer;
 }
 
+
+/* -------------------------- LOADING SPINNER*/
+
+.loading-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Put the modal on top of everything else */
+}
+
+#hint-text {
+  margin-top: 20px; /* Adjust this to increase/decrease space between spinner and hints */
+  color: white;
+  text-align: center;
+}
+
 .loading-overlay {
   position: absolute;
   top: 0;
@@ -254,9 +290,9 @@ cursor: pointer;
 
 .loading-screen {
   display: flex;
+  flex-direction: column;  /* New line: stack children vertically */
   align-items: center;
   justify-content: center;
-
 }
 
 .loading-spinner {
@@ -310,18 +346,15 @@ cursor: pointer;
   }
 }
 
+
+
+
+/* -------------------------- Stuff*/
+
+
+
 .side-container {
   margin-top: 5.7%; /* Adds space to the left outside the new container */
-}
-
-.dropzone.uploaded {
-  animation: uploaded 1s;
-}
-
-@keyframes uploaded {
-  0% { background-color: white; }
-  50% { background-color: lightgreen; }
-  100% { background-color: white; }
 }
 
 .footer {
@@ -333,4 +366,9 @@ cursor: pointer;
   color: #333;
   text-align: center;
   padding: 10px 0;
+}
+
+.btn {
+  background-color: #045034 !important;
+  color: #ffffff !important; /* You might want to change the button text color so it contrasts with the button color */
 }
