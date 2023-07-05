@@ -1,5 +1,12 @@
 // Array of hints
-const hints = ["+486% durchschnittliche Produktivitätssteigerung im Test", "100.000+ verschiedene Textarten", "1-1000+ Geeignet für Einzelpersonen oder große Teams", "An den Nutzer angepasste und trainierte Large Language Models mit Hugging Transformers", "Trainiert auf 100.000 deutschen Reden"];
+const hints = [
+  "Empfangen des API-Aufrufs vom Client",
+  "Entgegennahme und Verarbeitung der angeforderten Daten",
+  "Generierung des Modellkontexts aus den Daten",
+  "Ausführung der Inferenz mittels des Language Modells",
+  "Erstellung der generierten Antwort",
+  "Rücksendung der Antwort an den Client"
+];
 
 function showLoadingScreen() {
   const modal = document.createElement('div');

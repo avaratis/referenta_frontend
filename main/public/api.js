@@ -61,18 +61,7 @@ function countWordsLetters(text) {
         document.getElementById(tab.box).style.display = 'block'; // Show each chat box
     });
 
-    let selectedZweck = document.querySelector('#parliamentaryCheckbox').checked ? 'Parlamentarisch' : 'Andere';
-    let selectedVotum = document.querySelector('#dafürCheckbox').checked ? 'dafür' : (document.querySelector('#dagegenCheckbox').checked ? 'dagegen' : 'enthaltung');
-    let selectedLänge = document.querySelector('#lengthSlider').value;
-    let selectedRedner = document.querySelector('#rednerSelect').value;
-    let selectedOTone = document.querySelector('#oToneInput').value;
-
-    // Set these values to the respective elements in the "Selected Parameters" card
-    document.getElementById('selectedZweck').innerText = selectedZweck;
-    document.getElementById('selectedVotum').innerText = selectedVotum;
-    document.getElementById('selectedLänge').innerText = selectedLänge + ' Minuten';
-    document.getElementById('selectedRedner').innerText = selectedRedner;
-    document.getElementById('selectedOTone').innerText = selectedOTone;
+    // Your existing code for gathering the selected parameters...
 
     const requests = Array(3).fill().map(() => 
         fetch('https://us-central1-referenta-30a27.cloudfunctions.net/api/getChatResponse', {
@@ -88,25 +77,28 @@ function countWordsLetters(text) {
         })
     );
 
+    const start = new Date().getTime();
+
     try {
         const responses = await Promise.all(requests.map(req => req.then(res => res.text())));
 
+        const duration = new Date().getTime() - start;
+        const hints = ["Tokenization: Text is split into meaningful pieces", "Embedding: Tokens are converted into vectors", "Forward pass: Input vectors are processed through the model", "Backward pass: Model outputs are backpropagated to adjust weights", "Decoding: Model output is converted back into text"];
+        const hintDisplayTime = duration / hints.length;
+        let hintIndex = 0;
+        const hintInterval = setInterval(() => {
+            if (hintIndex >= hints.length) {
+                clearInterval(hintInterval);
+                return;
+            }
+            const hint = hints[hintIndex];
+            // Display the hint - replace this with your actual hint display function
+            document.getElementById('hint-text').innerText = hint;
+            hintIndex++;
+        }, hintDisplayTime);
+
         responses.forEach(async (botReply, index) => {
-            let wordCount = countWordsLetters(botReply).wordCount;
-            let letterCount = countWordsLetters(botReply).letterCount;
-            let topUsedWords  = mostUsedWords(botReply, 5);
-            let topUsedWordsStr = topUsedWords.map(obj => `${obj.word}: ${obj.count}`).join(', ');
-
-            document.getElementById('wordCount').innerText = wordCount;
-            document.getElementById('letterCount').innerText = letterCount;
-            document.getElementById('mostUsedWords').innerText = topUsedWordsStr;
-
-            // Add the bot reply to the appropriate chat tab
-            const chatBox = document.getElementById(chatTabs[index].box);
-            const chatReply = document.createElement('div');
-            chatReply.className = 'p-2 mt-2';
-            chatReply.innerHTML = botReply;
-            chatBox.appendChild(chatReply);
+            // Your existing code for handling the responses...
         });
 
         // After all requests are complete, unhide the tabs and boxes
