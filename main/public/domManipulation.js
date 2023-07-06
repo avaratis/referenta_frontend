@@ -8,6 +8,8 @@ const hints = [
   "Rücksendung der Antwort an den Client"
 ];
 
+let hintInterval;  // Declare this at a higher scope so it can be accessed by both functions
+
 function showLoadingScreen() {
   const modal = document.createElement('div');
   modal.className = 'loading-modal';  // assign a new class
@@ -24,7 +26,7 @@ function showLoadingScreen() {
   // Start cycling through hints
   let hintIndex = 0;
   document.getElementById('hint-text').innerText = hints[hintIndex];
-  setInterval(() => {
+  hintInterval = setInterval(() => {
     hintIndex = (hintIndex + 1) % hints.length; // Loop back to the start when reaching the end
     document.getElementById('hint-text').innerText = hints[hintIndex];
   }, 5000); // Change hint every 5 seconds
@@ -34,6 +36,11 @@ function hideLoadingScreen() {
   const modal = document.querySelector('.loading-modal');
   if (modal) {
     document.body.removeChild(modal);
+  }
+
+  // Stop cycling through hints
+  if (hintInterval) {
+    clearInterval(hintInterval);
   }
 }
 
