@@ -56,6 +56,15 @@ function countWordsLetters(text) {
         { tab: 'chat-tab-3', box: 'chatTabs3' }
     ];
 
+        // Clear the chat boxes
+        chatTabs.forEach(tab => {
+            const chatBox = document.getElementById(tab.box);
+            while (chatBox.firstChild) {
+                chatBox.removeChild(chatBox.firstChild);
+            }
+        });
+    
+
     document.getElementById('chatTab').style.display = 'flex'; // Show the chat tabs
     chatTabs.forEach(tab => {
         document.getElementById(tab.box).style.display = 'block'; // Show each chat box
