@@ -157,13 +157,17 @@ function calculateWordsSpoken(minutes, wordsPerMinute) {
 }
 
 function copyToClipboard() {
-    let selectedTabContent = document.getElementById(selectedTab).textContent;
-    navigator.clipboard.writeText(selectedTabContent).then(function() {
-        console.log('Copying to clipboard was successful!');
-    }, function(err) {
-        console.error('Could not copy text: ', err);
-    });
-  }
-  
+    let firstTabContent = document.getElementById('chatTabs').innerText;  // Select the text from the first tab
+    let tempInput = document.createElement('textarea');  // Create a temporary textarea to hold the text
+    document.body.appendChild(tempInput);
+    tempInput.value = firstTabContent;  // Assign the text content to the temporary textarea
+    tempInput.select();  // Select the text
+    document.execCommand('copy');  // Execute the 'copy' command
+    document.body.removeChild(tempInput);  // Remove the temporary textarea from the document
+
+    // Alert the user or provide some feedback that the text has been copied
+    alert('Text copied to clipboard');
+}
+
 
  
