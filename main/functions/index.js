@@ -51,7 +51,7 @@ app.post('/getChatResponse', async (req, res) => {
             content: prompt + "Input consideration: " + attachedPdf,
           }
         ],
-        max_tokens: 1024*8,
+        max_tokens: totalTokensNeeded*4,
         temperature: 0.2,
         
 
