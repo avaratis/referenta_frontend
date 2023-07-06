@@ -56,14 +56,7 @@ function countWordsLetters(text) {
         { tab: 'chat-tab-3', box: 'chatTabs3' }
     ];
 
-        // Clear the chat boxes
-        chatTabs.forEach(tab => {
-            const chatBox = document.getElementById(tab.box);
-            while (chatBox.firstChild) {
-                chatBox.removeChild(chatBox.firstChild);
-            }
-        });
-    
+
 
     document.getElementById('chatTab').style.display = 'flex'; // Show the chat tabs
     chatTabs.forEach(tab => {
@@ -100,6 +93,16 @@ function countWordsLetters(text) {
 const start = new Date().getTime();
 
 try {
+
+        // Clear the chat boxes
+        chatTabs.forEach(tab => {
+            const chatBox = document.getElementById(tab.box);
+            while (chatBox.firstChild) {
+                chatBox.removeChild(chatBox.firstChild);
+            }
+        });
+    
+
     const responses = await Promise.all(requests.map(req => req.then(res => res.text())));
 
     const duration = new Date().getTime() - start;
@@ -140,6 +143,8 @@ try {
     } catch (error) {
         console.error('Error:', error);
     }
+
+    
 
     hideLoadingScreen()
 }

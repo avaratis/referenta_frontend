@@ -76,3 +76,12 @@ dropzone.addEventListener('drop', (e) => {
   // Read the file as an ArrayBuffer
   reader.readAsArrayBuffer(file);
 });
+
+function copyToClipboard() {
+  let selectedTabContent = document.getElementById(selectedTab).textContent;
+  navigator.clipboard.writeText(selectedTabContent).then(function() {
+      console.log('Copying to clipboard was successful!');
+  }, function(err) {
+      console.error('Could not copy text: ', err);
+  });
+}
