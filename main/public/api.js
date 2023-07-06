@@ -109,16 +109,17 @@ try {
     const hints = ["Tokenization: Text is split into meaningful pieces", "Embedding: Tokens are converted into vectors", "Forward pass: Input vectors are processed through the model", "Backward pass: Model outputs are backpropagated to adjust weights", "Decoding: Model output is converted back into text"];
     const hintDisplayTime = duration / hints.length;
     let hintIndex = 0;
-
-const hintInterval = setInterval(() => {
-    if (hintIndex >= hints.length) {
-        clearInterval(hintInterval);
-        return;
-    }
-    const hint = hints[hintIndex];
-    document.getElementById('hint-text').innerText = hint;
-    hintIndex++;
-}, hintDisplayTime);
+    
+    const hintInterval = setInterval(() => {
+        if (hintIndex >= hints.length) {
+            clearInterval(hintInterval);
+            return;
+        }
+        const hint = hints[hintIndex];
+        // Display the hint - replace this with your actual hint display function
+        document.getElementById('hint-text').innerText = hint;
+        hintIndex++;
+    }, hintDisplayTime);
 
     responses.forEach(async (botReply, index) => {
             let wordCount = countWordsLetters(botReply).wordCount;
@@ -147,6 +148,8 @@ const hintInterval = setInterval(() => {
     hideLoadingScreen()
     if (hintInterval) {
         clearInterval(hintInterval);
+    }
+
 }
 
 
