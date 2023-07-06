@@ -184,6 +184,16 @@ vertical-align: middle;
   display: none;
 }
 
+.nav-link {
+  color: #045034 !important;
+}
+
+.nav-link.active {
+  color: white !important;
+  background-color: #045034 !important;
+}
+
+
 /* -------------------------- DROPZONE*/
 
 .dropzone {
