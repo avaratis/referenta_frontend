@@ -42,6 +42,67 @@ app.post('/getChatResponse', async (req, res) => {
   let totalTokensGenerated = 0;
 
   try {
+    //while (totalTokensGenerated < totalTokensNeeded) {
+      const response = await openai.createChatCompletion({
+        model: 'gpt-3.5-turbo-16k',
+        messages: [
+          {
+            role: 'user',
+            content: prompt + "Input consideration: " + attachedPdf,
+          }
+        ],
+        max_tokens: totalTokensNeeded*4,
+        temperature: 0.2,
+        
+
+
+        /*functions: [
+          {
+              "name": "write-speech-in-german",
+              "description": "Schreibe eine Rede auf deutsch, welche für den Deutschen Bundestag geeignet ist, die der Angabe der minimum Wörter entspricht und den tonalen parametern",
+              "parameters": {
+                "type": "object",
+                "properties": {
+                  "party": "Alternative für Deutschland",
+                  "stil": "polemisch",
+                  "typ": "parlamentarische rede",
+                  "language": "German"
+                },
+                "required": ["language"]
+              }
+          }
+        ],
+        function_call: 'auto',*/
+
+      });
+      
+      if (response.data && response.data.choices && response.data.choices.length > 0) {
+        const botReply = response.data.choices[0].message.content.trim();
+        fullResponse += botReply;
+        totalTokensGenerated += countTokens(botReply);  
+        prompt = "Task: Continue Speech -- " + "Already generated text: " + botReply;
+      } else {
+        throw new Error('Invalid response received from OpenAI API');
+      }
+    //}
+
+    res.send(fullResponse);
+  } catch (error) {
+    console.error("Error in /getChatResponse:", error.message, error);
+    res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/getFineTunedResponse', async (req, res) => {
+  let prompt = req.body.prompt;
+  const maxTokens = req.body.maxTokens;
+  const totalTokensNeeded = req.body.totalTokensNeeded;  // the total number of tokens you want to generate
+  let attachedPdf = req.body.attachedPdf;
+
+  let fullResponse = '';
+  let totalTokensGenerated = 0;
+
+  try {
     while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createChatCompletion({
         model: 'gpt-3.5-turbo-16k',
@@ -92,6 +153,7 @@ app.post('/getChatResponse', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
 
 
 exports.api = functions.https.onRequest(app);
