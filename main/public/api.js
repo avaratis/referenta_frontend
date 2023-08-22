@@ -76,7 +76,7 @@ function countWordsLetters(text) {
     document.getElementById('selectedRedner').innerText = selectedRedner;
     document.getElementById('selectedOTone').innerText = selectedOTone;
 
-    const requests = Array(3).fill().map(() => 
+    const requests = Array(1).fill().map(() => 
     fetch('https://us-central1-referenta-30a27.cloudfunctions.net/api/getChatResponse', {
         method: 'POST',
         headers: {
