@@ -76,7 +76,7 @@ function countWordsLetters(text) {
     document.getElementById('selectedRedner').innerText = selectedRedner;
     document.getElementById('selectedOTone').innerText = selectedOTone;
 
-    const requests = Array(1).fill().map(() => 
+
     fetch('https://us-central1-referenta-30a27.cloudfunctions.net/api/getChatResponse', {
         method: 'POST',
         headers: {
@@ -88,7 +88,7 @@ function countWordsLetters(text) {
             attachedPdf: parsedPdf
         })
     })
-);
+
 
 const start = new Date().getTime();
 
@@ -116,7 +116,7 @@ try {
             return;
         }
         const hint = hints[hintIndex];
-        // Display the hint - replace this with your actual hint display function
+
         document.getElementById('hint-text').innerText = hint;
         hintIndex++;
     }, hintDisplayTime);
