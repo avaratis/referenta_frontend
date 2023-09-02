@@ -83,7 +83,7 @@ function countWordsLetters(text) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            prompt: "Aufgabe Rede für den Deutschen Bundestag: " + "REDNER: " + inputData.redner + " THEMA: " + inputData.oTone + " SPRACHE: Deutsch " + "MAXIMALE ANZAHL VON WÖRTERN: " +  calculateWordsSpoken(inputData.length, wordsPerMinute) + " POSITION: " + (inputData.dafür == true ? " FOR DIESE POSITION " : " GEGEN DIE POSITION "),
+            prompt: "Aufgabe Rede für den Deutschen Bundestag: " + "REDNER: " + inputData.redner + "ANFANG: Vielen Dank Frau Präsidentin, meine sehr geehrten Damen und Herren Abgeordnete. " + "THEMA: " + inputData.oTone + " SPRACHE: Deutsch " + "MAXIMALE ANZAHL VON WÖRTERN: " +  calculateWordsSpoken(inputData.length, wordsPerMinute) + " POSITION: " + (inputData.dafür == true ? " FOR DIESE POSITION " : " GEGEN DIE POSITION "),
             totalTokensNeeded: calculateWordsSpoken(inputData.length, wordsPerMinute),
             attachedPdf: parsedPdf
         })
