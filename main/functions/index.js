@@ -58,7 +58,7 @@ app.post('/getChatResponse', async (req, res) => {
   try {
     //while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createChatCompletion({
-        model: 'gpt-3.5-turbo-16k',
+        model: 'gpt-4-32k-0314',
         messages: [
           {
             role: 'user',
@@ -67,8 +67,6 @@ app.post('/getChatResponse', async (req, res) => {
         ],
         max_tokens: totalTokensNeeded*4,
         temperature: 0.4,
-        
-
 
         /*functions: [
           {
@@ -129,7 +127,7 @@ app.post('/getFineTunedResponse', async (req, res) => {
   try {
     while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createChatCompletion({
-        model: 'gpt-3.5-turbo-16k',
+        model: 'gpt-3.5-turbo-16k-0613',
         messages: [
           {
             role: 'user',
