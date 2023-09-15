@@ -19,8 +19,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { Configuration, OpenAIApi } = require("openai");
 
-import fs from 'fs';
-
 const app = express();
 app.use(cors({ origin: 'https://referenta-30a27.web.app' }));
 app.use(bodyParser.json());
