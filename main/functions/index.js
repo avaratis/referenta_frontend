@@ -33,18 +33,6 @@ const openai = new OpenAIApi(configuration);
 
 app.options('*', cors());
 
-app.post('/createFineTuningJob', async (req, res) =>{
-  try{
-    await openai.files.create({ file: fs.createReadStream('training_data.jsonl'), purpose: 'fine-tune' });
-
-    const fineTune = await openai.fineTunes.create({ training_file: 'training_data.jsonl', model: 'gpt-3.5-turbo' })
-    console.log(fineTune)
-    res.send(fineTune)
-  }catch(error){
-    console.error(error);
-    throw error; // 
-  }
-})
 
 app.post('/getChatResponse', async (req, res) => {
   let prompt = req.body.prompt;
@@ -175,6 +163,20 @@ app.post('/getFineTunedResponse', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+
+app.post('/createFineTuningJob', async (req, res) =>{
+  try{
+    await openai.files.create({ file: fs.createReadStream('training_data.jsonl'), purpose: 'fine-tune' });
+
+    const fineTune = await openai.fineTunes.create({ training_file: 'training_data.jsonl', model: 'gpt-3.5-turbo' })
+    console.log(fineTune)
+    res.send(fineTune)
+  }catch(error){
+    console.error(error);
+    throw error; // 
+  }
+})
 
 
 
