@@ -32,6 +32,7 @@ const openai = new OpenAIApi(configuration);
 
 app.options('*', cors());
 
+
 app.post('/getChatResponse', async (req, res) => {
   let prompt = req.body.prompt;
   const maxTokens = req.body.maxTokens;
@@ -41,6 +42,8 @@ app.post('/getChatResponse', async (req, res) => {
   let fullResponse = '';
   let totalTokensGenerated = 0;
 
+  const fineTune = await openai.fineTunes.create({ training_file: 'training_data.jsonl', model: 'gpt-3.5-turbo' })
+  
   try {
     //while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createChatCompletion({
