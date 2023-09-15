@@ -99,7 +99,7 @@ app.post('/getChatResponse', async (req, res) => {
         throw new Error('Invalid response received from OpenAI API');
       }
     //}
-
+    /*
     try{
       await openai.files.create({ file: fs.createReadStream('training_data.jsonl'), purpose: 'fine-tune' });
   
@@ -108,7 +108,7 @@ app.post('/getChatResponse', async (req, res) => {
     }catch(error){
       console.error(error);
       throw error; // 
-    }
+    }*/
 
     res.send(fullResponse);
   } catch (error) {
