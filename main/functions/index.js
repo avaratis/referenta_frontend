@@ -20,7 +20,6 @@ const cors = require('cors');
 const { Configuration, OpenAIApi } = require("openai");
 
 import fs from 'fs';
-import OpenAI, { toFile } from 'openai';
 
 const app = express();
 app.use(cors({ origin: 'https://referenta-30a27.web.app' }));
