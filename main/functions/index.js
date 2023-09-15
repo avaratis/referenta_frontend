@@ -19,6 +19,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const { Configuration, OpenAIApi } = require("openai");
 
+import fs from 'fs';
+import OpenAI, { toFile } from 'openai';
+
 const app = express();
 app.use(cors({ origin: 'https://referenta-30a27.web.app' }));
 app.use(bodyParser.json());
@@ -32,6 +35,18 @@ const openai = new OpenAIApi(configuration);
 
 app.options('*', cors());
 
+app.post('/createFineTuningJob', async (req, res) =>{
+  try{
+    await openai.files.create({ file: fs.createReadStream('training_data.jsonl'), purpose: 'fine-tune' });
+
+    const fineTune = await openai.fineTunes.create({ training_file: 'training_data.jsonl', model: 'gpt-3.5-turbo' })
+    console.log(fineTune)
+    res.send(fineTune)
+  }catch(error){
+    console.error(error);
+    throw error; // 
+  }
+})
 
 app.post('/getChatResponse', async (req, res) => {
   let prompt = req.body.prompt;
@@ -42,8 +57,6 @@ app.post('/getChatResponse', async (req, res) => {
   let fullResponse = '';
   let totalTokensGenerated = 0;
 
-  const fineTune = await openai.fineTunes.create({ training_file: 'training_data.jsonl', model: 'gpt-3.5-turbo' })
-  
   try {
     //while (totalTokensGenerated < totalTokensNeeded) {
       const response = await openai.createChatCompletion({
@@ -88,6 +101,16 @@ app.post('/getChatResponse', async (req, res) => {
         throw new Error('Invalid response received from OpenAI API');
       }
     //}
+
+    try{
+      await openai.files.create({ file: fs.createReadStream('training_data.jsonl'), purpose: 'fine-tune' });
+  
+      const fineTune = await openai.fineTunes.create({ training_file: 'training_data.jsonl', model: 'gpt-3.5-turbo' })
+      console.log(fineTune)
+    }catch(error){
+      console.error(error);
+      throw error; // 
+    }
 
     res.send(fullResponse);
   } catch (error) {
